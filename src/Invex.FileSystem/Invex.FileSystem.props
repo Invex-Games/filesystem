@@ -1,0 +1,5 @@
+<Project>
+    <ItemGroup>
+        <Using Include="Invex.FileSystem" Global="true"/>
+    </ItemGroup>
+</Project>
