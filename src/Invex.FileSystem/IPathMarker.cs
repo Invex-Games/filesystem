@@ -26,7 +26,7 @@ public interface IPathMarker
     /// <param name="fileSystem">
     ///     The file system instance to bind the path to.  Passing the current
     ///     <see cref="IRootedFileSystem" /> keeps the returned <see cref="RootedPath" /> consistent
-    ///     with all other paths in the build.
+    ///     with all other paths resolved by the application.
     /// </param>
     /// <returns>A <see cref="RootedPath" /> representing the location of the file or directory.</returns>
     static abstract RootedPath Path(IFileSystem fileSystem);

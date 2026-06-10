@@ -29,6 +29,12 @@ public static class TransformFileScopeExtensions
     ///     A task that completes with the same <see cref="TransformMultiFileScope" /> instance after
     ///     the transformation has been applied.
     /// </returns>
+    /// <remarks>
+    ///     This overload does not accept a <see cref="CancellationToken" />; the inner
+    ///     <see cref="TransformMultiFileScope.AddAsync(Func{string,string},CancellationToken)" />
+    ///     call runs with <see cref="CancellationToken.None" />.  Call that method directly if
+    ///     cancellation support is required.
+    /// </remarks>
     public static async Task<TransformMultiFileScope> AddAsync(
         this Task<TransformMultiFileScope> scopeTask,
         Func<string, string> transform) =>
@@ -44,6 +50,12 @@ public static class TransformFileScopeExtensions
     ///     A task that completes with the same <see cref="TransformFileScope" /> instance after the
     ///     transformation has been applied.
     /// </returns>
+    /// <remarks>
+    ///     This overload does not accept a <see cref="CancellationToken" />; the inner
+    ///     <see cref="TransformFileScope.AddAsync(Func{string,string},CancellationToken)" />
+    ///     call runs with <see cref="CancellationToken.None" />.  Call that method directly if
+    ///     cancellation support is required.
+    /// </remarks>
     public static async Task<TransformFileScope> AddAsync(
         this Task<TransformFileScope> scopeTask,
         Func<string, string> transform) =>

@@ -2,6 +2,7 @@ global using System.Diagnostics.CodeAnalysis;
 global using System.IO.Abstractions;
 global using System.IO.Abstractions.TestingHelpers;
 global using FakeItEasy;
+global using Invex.RepoUtils.TestUtils;
 global using JetBrains.Annotations;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;

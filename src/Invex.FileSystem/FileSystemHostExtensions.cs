@@ -25,7 +25,8 @@ public static class FileSystemHostExtensions
         ///         <item>
         ///             A singleton <see cref="IRootedFileSystem" /> whose <see cref="IPathProvider" />
         ///             list is populated from all <see cref="IPathProvider" /> services registered in
-        ///             the container, sorted by descending <see cref="IPathProvider.Priority" />.
+        ///             the container, sorted by descending <see cref="IPathProvider.Priority" />
+        ///             (registration order breaks ties).
         ///         </item>
         ///         <item>
         ///             A singleton <see cref="IFileSystem" /> (non-keyed) that resolves to the same
@@ -57,8 +58,8 @@ public static class FileSystemHostExtensions
         ///     recognises the key, or <c>null</c> to defer to the next provider.
         /// </param>
         /// <param name="priority">
-        ///     The priority of the provider.  Higher values are queried before lower values.
-        ///     Defaults to <c>1</c>, which is above the built-in provider at priority <c>0</c>.
+        ///     The priority of the provider.  Higher values are queried before lower values; providers
+        ///     with equal priority are queried in registration order.  Defaults to <c>1</c>.
         /// </param>
         /// <remarks>
         ///     Use the overload that also accepts an <see cref="IRootedFileSystem" /> parameter when
@@ -84,8 +85,8 @@ public static class FileSystemHostExtensions
         ///     defer to the next provider.
         /// </param>
         /// <param name="priority">
-        ///     The priority of the provider.  Higher values are queried before lower values.
-        ///     Defaults to <c>1</c>.
+        ///     The priority of the provider.  Higher values are queried before lower values; providers
+        ///     with equal priority are queried in registration order.  Defaults to <c>1</c>.
         /// </param>
         /// <remarks>
         ///     Prefer this overload when the path depends on another resolved path, for example:

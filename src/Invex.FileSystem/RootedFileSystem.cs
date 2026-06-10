@@ -74,10 +74,16 @@ public interface IRootedFileSystem : IFileSystem
     ///     resolution depth exceeds the circular-dependency guard threshold.
     /// </exception>
     /// <remarks>
-    ///     Results are cached after the first successful resolution so that repeated calls to
-    ///     <c>GetPath("Root")</c> always return the same <see cref="RootedPath" /> instance without
-    ///     re-querying providers.  This also means that if two providers could resolve the same key,
-    ///     only the one with the highest priority (earliest in the ordered list) ever runs.
+    ///     <para>
+    ///         Providers are queried in order until one returns a non-<c>null</c> result; providers
+    ///         that do not recognise the key are skipped over.  When two providers can both resolve
+    ///         the same key, the one with the higher priority wins.
+    ///     </para>
+    ///     <para>
+    ///         Results are cached after the first successful resolution, so repeated calls with the
+    ///         same key always return the same <see cref="RootedPath" /> instance without re-querying
+    ///         providers.
+    ///     </para>
     /// </remarks>
     RootedPath GetPath(string key);
 
@@ -133,8 +139,14 @@ internal sealed class RootedFileSystem(ILogger<RootedFileSystem> logger) : IRoot
     private readonly AsyncLocal<int> _getPathDepth = new();
     private readonly Dictionary<string, RootedPath> _pathCache = [];
 
+    /// <summary>
+    ///     Gets the ordered list of <see cref="IPathProvider" /> instances used to resolve path
+    ///     keys.  Providers must be supplied in descending priority order; <see cref="GetPath" />
+    ///     returns the first non-<c>null</c> result without re-sorting.
+    /// </summary>
     public required IReadOnlyList<IPathProvider> PathProviders { private get; init; }
 
+    /// <inheritdoc />
     public required IFileSystem FileSystem { get; init; }
 
     /// <inheritdoc />

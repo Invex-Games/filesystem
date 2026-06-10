@@ -1,7 +1,7 @@
 ﻿# Invex.FileSystem
 
 [![NuGet](https://img.shields.io/nuget/v/Invex.FileSystem.svg)](https://www.nuget.org/packages/Invex.FileSystem)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.txt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Invex-Games/filesystem/blob/main/LICENSE.txt)
 [![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-512BD4.svg)](https://dotnet.microsoft.com/)
 
 A strongly-typed file system abstraction for .NET that layers **build-aware path resolution** and **reversible file
@@ -209,4 +209,4 @@ path.FileExists.ShouldBeTrue();
 
 ## License
 
-Licensed under the [MIT License](LICENSE.txt).
+Licensed under the [MIT License](https://github.com/Invex-Games/filesystem/blob/main/LICENSE.txt).

@@ -82,7 +82,14 @@ public sealed class TransformMultiFileScope : IAsyncDisposable, IDisposable
     ///     Synchronously disposes the scope and restores all managed files to their original state.
     /// </summary>
     /// <remarks>
-    ///     <inheritdoc cref="DisposeAsync" />
+    ///     <list type="bullet">
+    ///         <item>If <see cref="CancelRestore" /> was called, all files are left as-is.</item>
+    ///         <item>Files that did not exist when the scope was created are deleted.</item>
+    ///         <item>All other files have their original content written back, one at a time.</item>
+    ///         <item>Calling this method more than once is safe — subsequent calls are no-ops.</item>
+    ///     </list>
+    ///     Prefer <see cref="DisposeAsync" /> (via <c>await using</c>) where possible: it restores
+    ///     files in parallel and does not block the calling thread.
     /// </remarks>
     public void Dispose()
     {
@@ -112,7 +119,11 @@ public sealed class TransformMultiFileScope : IAsyncDisposable, IDisposable
     ///     not yet exist).  The same function is called for every file; if you need per-file logic
     ///     consider multiple <see cref="TransformFileScope" /> instances instead.
     /// </param>
-    /// <param name="cancellationToken">A cancellation token.</param>
+    /// <param name="cancellationToken">
+    ///     Token to observe for cancellation.  If cancelled while the transformed content is being
+    ///     written, all files are restored to their state at the time the scope was created before
+    ///     the exception propagates.
+    /// </param>
     /// <returns>
     ///     A <see cref="TransformMultiFileScope" /> that will restore all files when disposed.
     /// </returns>
@@ -120,6 +131,16 @@ public sealed class TransformMultiFileScope : IAsyncDisposable, IDisposable
     ///     Thrown (and all files restored) if <paramref name="cancellationToken" /> is cancelled
     ///     while the transformed content is being written.
     /// </exception>
+    /// <remarks>
+    ///     <para>
+    ///         <paramref name="files" /> is enumerated exactly once; files are read and written in
+    ///         parallel via <see cref="Task.WhenAll(IEnumerable{Task})" />.
+    ///     </para>
+    ///     <para>
+    ///         Files that do not exist are created on disk, the transform receives an empty string
+    ///         for them, and disposing the scope <em>deletes</em> them rather than restoring content.
+    ///     </para>
+    /// </remarks>
     public static async Task<TransformMultiFileScope> CreateAsync(
         IEnumerable<RootedPath> files,
         Func<string, string> transform,
@@ -168,7 +189,10 @@ public sealed class TransformMultiFileScope : IAsyncDisposable, IDisposable
     ///     A function that receives each file's <em>current</em> (already-transformed) content and
     ///     returns the next content to write.
     /// </param>
-    /// <param name="cancellationToken">A cancellation token.</param>
+    /// <param name="cancellationToken">
+    ///     Token to observe for cancellation.  If cancelled during the write, all files are restored
+    ///     to their state at the time the scope was created before the exception propagates.
+    /// </param>
     /// <returns>The same <see cref="TransformMultiFileScope" /> instance, for fluent chaining.</returns>
     /// <exception cref="ObjectDisposedException">Thrown if the scope has already been disposed.</exception>
     /// <exception cref="OperationCanceledException">
@@ -176,8 +200,14 @@ public sealed class TransformMultiFileScope : IAsyncDisposable, IDisposable
     ///     during the write.
     /// </exception>
     /// <remarks>
-    ///     The scope always restores to the <em>original</em> contents captured at creation time,
-    ///     not the state after the most recent <c>Add</c> call.
+    ///     <para>
+    ///         The scope always restores to the <em>original</em> contents captured at creation time,
+    ///         not the state after the most recent <c>Add</c> call.
+    ///     </para>
+    ///     <para>
+    ///         If <see cref="CancelRestore" /> has been called, the transformation is skipped and the
+    ///         scope is returned unchanged.
+    ///     </para>
     /// </remarks>
     public async Task<TransformMultiFileScope> AddAsync(
         Func<string, string> transform,
@@ -218,6 +248,16 @@ public sealed class TransformMultiFileScope : IAsyncDisposable, IDisposable
     /// <returns>
     ///     A <see cref="TransformMultiFileScope" /> that will restore all files when disposed.
     /// </returns>
+    /// <remarks>
+    ///     <para>
+    ///         <paramref name="files" /> is enumerated exactly once; files are read and written
+    ///         sequentially.  Use <see cref="CreateAsync" /> to process files in parallel.
+    ///     </para>
+    ///     <para>
+    ///         Files that do not exist are created on disk, the transform receives an empty string
+    ///         for them, and disposing the scope <em>deletes</em> them rather than restoring content.
+    ///     </para>
+    /// </remarks>
     public static TransformMultiFileScope Create(IEnumerable<RootedPath> files, Func<string, string> transform)
     {
         var filesArray = files.ToArray();
@@ -257,7 +297,7 @@ public sealed class TransformMultiFileScope : IAsyncDisposable, IDisposable
     /// <returns>The same <see cref="TransformMultiFileScope" /> instance, for fluent chaining.</returns>
     /// <exception cref="ObjectDisposedException">Thrown if the scope has already been disposed.</exception>
     /// <remarks>
-    ///     <inheritdoc cref="AddAsync(Func{string,string},CancellationToken)" select="remarks" />
+    ///     <inheritdoc cref="AddAsync(Func{string,string},CancellationToken)" path="/remarks/node()" />
     /// </remarks>
     public TransformMultiFileScope Add(Func<string, string> transform)
     {
@@ -280,7 +320,7 @@ public sealed class TransformMultiFileScope : IAsyncDisposable, IDisposable
     ///     disposed.
     /// </summary>
     /// <remarks>
-    ///     <inheritdoc cref="TransformFileScope.CancelRestore" />
+    ///     <inheritdoc cref="TransformFileScope.CancelRestore" path="/remarks/node()" />
     /// </remarks>
     public void CancelRestore() =>
         _cancelled = true;
