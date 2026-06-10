@@ -96,16 +96,18 @@ public record RootedPath(IFileSystem FileSystem, string Path)
     public string FileNameWithoutExtension => FileSystem.Path.GetFileNameWithoutExtension(Path);
 
     /// <summary>
-    ///     Gets the parent directory path of the current path as reported by the file system.
+    ///     Gets the path of the directory containing the current path, as computed by
+    ///     <see cref="IPath.GetDirectoryName(string)" />.
     /// </summary>
     /// <returns>
-    ///     The directory component of the path if the path resolves to an existing directory;
+    ///     The containing directory's path if the current path resolves to an existing directory;
     ///     otherwise <c>null</c>.
     ///     Returns <c>null</c> (rather than throwing) when the path points to a file or does not exist.
     /// </returns>
     /// <remarks>
-    ///     This delegates to <see cref="IPath.GetDirectoryName(string)" />, which strips the last path
-    ///     segment and trailing separator — it does <em>not</em> return the directory's own name.
+    ///     <see cref="IPath.GetDirectoryName(string)" /> strips the last path segment and any trailing
+    ///     separator — it returns the <em>parent</em> path, not the directory's own name.  For the
+    ///     last segment of the path itself, use <see cref="FileNameWithoutExtension" />.
     /// </remarks>
     public string? DirectoryName =>
         DirectoryExists

@@ -83,7 +83,14 @@ public sealed class TransformFileScope : IAsyncDisposable, IDisposable
     ///     Synchronously disposes the scope and restores the file to its original state.
     /// </summary>
     /// <remarks>
-    ///     <inheritdoc cref="DisposeAsync" />
+    ///     <list type="bullet">
+    ///         <item>If <see cref="CancelRestore" /> was called, the file is left as-is.</item>
+    ///         <item>If the file did not exist when the scope was created, it is deleted.</item>
+    ///         <item>Otherwise the original content is written back.</item>
+    ///         <item>Calling this method more than once is safe — subsequent calls are no-ops.</item>
+    ///     </list>
+    ///     Prefer <see cref="DisposeAsync" /> (via <c>await using</c>) where possible so the restore
+    ///     write does not block the calling thread.
     /// </remarks>
     public void Dispose()
     {
@@ -110,7 +117,11 @@ public sealed class TransformFileScope : IAsyncDisposable, IDisposable
     ///     A function that receives the file's current content (or an empty string if the file does
     ///     not yet exist) and returns the new content to write.
     /// </param>
-    /// <param name="cancellationToken">A cancellation token.</param>
+    /// <param name="cancellationToken">
+    ///     Token to observe for cancellation.  If cancelled while the transformed content is being
+    ///     written, the file is restored to its state at the time the scope was created before the
+    ///     exception propagates.
+    /// </param>
     /// <returns>
     ///     A <see cref="TransformFileScope" /> that will restore the file when disposed.
     /// </returns>
@@ -118,6 +129,10 @@ public sealed class TransformFileScope : IAsyncDisposable, IDisposable
     ///     Thrown (and the file restored) if <paramref name="cancellationToken" /> is cancelled while
     ///     the transformed content is being written.
     /// </exception>
+    /// <remarks>
+    ///     If the file does not exist it is created on disk, the transform receives an empty string,
+    ///     and disposing the scope <em>deletes</em> the file rather than restoring content.
+    /// </remarks>
     public static async Task<TransformFileScope> CreateAsync(
         RootedPath file,
         Func<string, string> transform,
@@ -160,7 +175,10 @@ public sealed class TransformFileScope : IAsyncDisposable, IDisposable
     ///     A function that receives the file's <em>current</em> (already-transformed) content and
     ///     returns the next content to write.
     /// </param>
-    /// <param name="cancellationToken">A cancellation token.</param>
+    /// <param name="cancellationToken">
+    ///     Token to observe for cancellation.  If cancelled during the write, the file is restored
+    ///     to its state at the time the scope was created before the exception propagates.
+    /// </param>
     /// <returns>The same <see cref="TransformFileScope" /> instance, for fluent chaining.</returns>
     /// <exception cref="ObjectDisposedException">Thrown if the scope has already been disposed.</exception>
     /// <exception cref="OperationCanceledException">
@@ -168,9 +186,15 @@ public sealed class TransformFileScope : IAsyncDisposable, IDisposable
     ///     the write.
     /// </exception>
     /// <remarks>
-    ///     The scope still restores to the <em>original</em> content (captured at creation time),
-    ///     not the content at the point of the last <c>Add</c> call.  Multiple calls build up
-    ///     transformations; disposal always unwinds them all at once.
+    ///     <para>
+    ///         The scope still restores to the <em>original</em> content (captured at creation time),
+    ///         not the content at the point of the last <c>Add</c> call.  Multiple calls build up
+    ///         transformations; disposal always unwinds them all at once.
+    ///     </para>
+    ///     <para>
+    ///         If <see cref="CancelRestore" /> has been called, the transformation is skipped and the
+    ///         scope is returned unchanged.
+    ///     </para>
     /// </remarks>
     public async Task<TransformFileScope> AddAsync(
         Func<string, string> transform,
@@ -208,6 +232,10 @@ public sealed class TransformFileScope : IAsyncDisposable, IDisposable
     /// <returns>
     ///     A <see cref="TransformFileScope" /> that will restore the file when disposed.
     /// </returns>
+    /// <remarks>
+    ///     If the file does not exist it is created on disk, the transform receives an empty string,
+    ///     and disposing the scope <em>deletes</em> the file rather than restoring content.
+    /// </remarks>
     public static TransformFileScope Create(RootedPath file, Func<string, string> transform)
     {
         string? initialContent = null;
@@ -239,7 +267,7 @@ public sealed class TransformFileScope : IAsyncDisposable, IDisposable
     /// <returns>The same <see cref="TransformFileScope" /> instance, for fluent chaining.</returns>
     /// <exception cref="ObjectDisposedException">Thrown if the scope has already been disposed.</exception>
     /// <remarks>
-    ///     <inheritdoc cref="AddAsync(Func{string,string},CancellationToken)" select="remarks" />
+    ///     <inheritdoc cref="AddAsync(Func{string,string},CancellationToken)" path="/remarks/node()" />
     /// </remarks>
     public TransformFileScope Add(Func<string, string> transform)
     {

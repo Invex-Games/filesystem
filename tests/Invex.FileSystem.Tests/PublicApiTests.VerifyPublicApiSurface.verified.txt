@@ -1,0 +1,182 @@
+﻿[
+  {
+    Name: Invex.FileSystem.FileSystemHostExtensions,
+    Members: [
+      {
+        Name: AddRootedFileSystem
+      },
+      {
+        Name: ProvidePath
+      },
+      {
+        Name: ProvidePath
+      }
+    ]
+  },
+  {
+    Name: Invex.FileSystem.FunctionPathProvider,
+    Members: [
+      {
+        Name: GetPath
+      },
+      {
+        Name: Priority
+      },
+      {
+        Name: Provider
+      }
+    ]
+  },
+  {
+    Name: Invex.FileSystem.IPathMarker,
+    Members: [
+      {
+        Name: Path
+      }
+    ]
+  },
+  {
+    Name: Invex.FileSystem.IPathProvider,
+    Members: [
+      {
+        Name: GetPath
+      },
+      {
+        Name: Priority
+      }
+    ]
+  },
+  {
+    Name: Invex.FileSystem.IRootedFileSystem,
+    Members: [
+      {
+        Name: CreateRootedPath
+      },
+      {
+        Name: CurrentDirectory
+      },
+      {
+        Name: FileSystem
+      },
+      {
+        Name: GetPath
+      },
+      {
+        Name: GetPath
+      }
+    ]
+  },
+  {
+    Name: Invex.FileSystem.RootedPath,
+    Members: [
+      {
+        Name: <Clone>$
+      },
+      {
+        Name: Deconstruct
+      },
+      {
+        Name: DirectoryExists
+      },
+      {
+        Name: DirectoryName
+      },
+      {
+        Name: Equals
+      },
+      {
+        Name: Equals
+      },
+      {
+        Name: FileExists
+      },
+      {
+        Name: FileName
+      },
+      {
+        Name: FileNameWithoutExtension
+      },
+      {
+        Name: FileSystem
+      },
+      {
+        Name: GetHashCode
+      },
+      {
+        Name: Parent
+      },
+      {
+        Name: Path
+      },
+      {
+        Name: PathExists
+      },
+      {
+        Name: ToString
+      }
+    ]
+  },
+  {
+    Name: Invex.FileSystem.TransformFileScope,
+    Members: [
+      {
+        Name: Add
+      },
+      {
+        Name: AddAsync
+      },
+      {
+        Name: CancelRestore
+      },
+      {
+        Name: Create
+      },
+      {
+        Name: CreateAsync
+      },
+      {
+        Name: Dispose
+      },
+      {
+        Name: DisposeAsync
+      }
+    ]
+  },
+  {
+    Name: Invex.FileSystem.TransformFileScopeExtensions,
+    Members: [
+      {
+        Name: AddAsync
+      },
+      {
+        Name: AddAsync
+      }
+    ]
+  },
+  {
+    Name: Invex.FileSystem.TransformMultiFileScope,
+    Members: [
+      {
+        Name: Add
+      },
+      {
+        Name: AddAsync
+      },
+      {
+        Name: CancelRestore
+      },
+      {
+        Name: Create
+      },
+      {
+        Name: CreateAsync
+      },
+      {
+        Name: Dispose
+      },
+      {
+        Name: DisposeAsync
+      }
+    ]
+  }
+]
