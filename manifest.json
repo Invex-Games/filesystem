@@ -1,0 +1,308 @@
+{
+  "source_base_path": "/home/runner/work/filesystem/filesystem",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.FileSystem.FileSystemHostExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.FileSystem.FileSystemHostExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.FileSystem.FileSystemHostExtensions",
+      "Summary": "<p sourcefile=\"api/Invex.FileSystem.FileSystemHostExtensions.yml\" sourcestartlinenumber=\"1\">Provides extension methods for registering the file system services with an\n<xref href=\"Microsoft.Extensions.DependencyInjection.IServiceCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.FileSystem.FunctionPathProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.FileSystem.FunctionPathProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.FileSystem.FunctionPathProvider",
+      "Summary": "<p sourcefile=\"api/Invex.FileSystem.FunctionPathProvider.yml\" sourcestartlinenumber=\"1\">A lightweight, delegate-based implementation of <xref href=\"Invex.FileSystem.IPathProvider\" data-throw-if-not-resolved=\"false\"></xref> that resolves\npaths using a caller-supplied function rather than requiring a dedicated class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.FileSystem.IPathMarker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.FileSystem.IPathMarker.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.FileSystem.IPathMarker",
+      "Summary": "<p sourcefile=\"api/Invex.FileSystem.IPathMarker.yml\" sourcestartlinenumber=\"1\">Defines a contract for types that represent a specific, well-known file path within the\nfile system, resolved relative to the current <xref href=\"System.IO.Abstractions.IFileSystem\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.FileSystem.IPathProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.FileSystem.IPathProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.FileSystem.IPathProvider",
+      "Summary": "<p sourcefile=\"api/Invex.FileSystem.IPathProvider.yml\" sourcestartlinenumber=\"1\">Defines a provider that can resolve a <xref href=\"Invex.FileSystem.RootedPath\" data-throw-if-not-resolved=\"false\"></xref> for a given key within the\nfile system.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.FileSystem.IRootedFileSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.FileSystem.IRootedFileSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.FileSystem.IRootedFileSystem",
+      "Summary": "<p sourcefile=\"api/Invex.FileSystem.IRootedFileSystem.yml\" sourcestartlinenumber=\"1\">Defines a specialised file system abstraction, layering build-aware path resolution\non top of the standard <xref href=\"System.IO.Abstractions.IFileSystem\" data-throw-if-not-resolved=\"false\"></xref> abstraction.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.FileSystem.RootedPath.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.FileSystem.RootedPath.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.FileSystem.RootedPath",
+      "Summary": "<p sourcefile=\"api/Invex.FileSystem.RootedPath.yml\" sourcestartlinenumber=\"1\">Represents a file system path that is rooted within a specific <xref href=\"System.IO.Abstractions.IFileSystem\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.FileSystem.TransformFileScope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.FileSystem.TransformFileScope.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.FileSystem.TransformFileScope",
+      "Summary": "<p sourcefile=\"api/Invex.FileSystem.TransformFileScope.yml\" sourcestartlinenumber=\"1\">Provides disposable scopes for performing temporary, reversible transformations on a single\nfile's content.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.FileSystem.TransformFileScopeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.FileSystem.TransformFileScopeExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.FileSystem.TransformFileScopeExtensions",
+      "Summary": "<p sourcefile=\"api/Invex.FileSystem.TransformFileScopeExtensions.yml\" sourcestartlinenumber=\"1\">Provides extension methods for fluently chaining additional transformations onto a\n<xref href=\"System.Threading.Tasks.Task%601\" data-throw-if-not-resolved=\"false\"></xref> that yields a scope returned by one of the static\n<code>CreateAsync</code> factory methods.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.FileSystem.TransformMultiFileScope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.FileSystem.TransformMultiFileScope.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.FileSystem.TransformMultiFileScope",
+      "Summary": "<p sourcefile=\"api/Invex.FileSystem.TransformMultiFileScope.yml\" sourcestartlinenumber=\"1\">Provides disposable scopes for performing temporary, reversible transformations on\n<em>multiple</em> files simultaneously.\nUpon disposal, the original content of every managed file is restored unless restoration\nis explicitly cancelled.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.FileSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.FileSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.FileSystem",
+      "Summary": null
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/path-markers.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/path-markers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/path-providers.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/path-providers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/rooted-paths.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/rooted-paths.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/testing.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/testing.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/transform-scopes.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/transform-scopes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/icon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/icon.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
