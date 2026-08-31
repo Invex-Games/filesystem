@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Testing | Invex.FileSystem </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Testing | Invex.FileSystem ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/filesystem/blob/main/docs/testing.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Invex.FileSystem">
+            Invex.FileSystem
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="testing">Testing</h1>
+
+<p>Because the library builds on <code>System.IO.Abstractions</code>, everything can be exercised against an in-memory
+<code>MockFileSystem</code> — no real disk required.</p>
+<pre><code class="lang-shell">dotnet add package TestableIO.System.IO.Abstractions.TestingHelpers
+</code></pre>
+<h2 id="testing-with-rootedpath-directly">Testing with <code>RootedPath</code> directly</h2>
+<p>Construct a <code>RootedPath</code> over a <code>MockFileSystem</code> and use it exactly like a real path:</p>
+<pre><code class="lang-csharp">using System.IO.Abstractions.TestingHelpers;
+
+var mock = new MockFileSystem();
+var path = new RootedPath(mock, &quot;/repo/file.txt&quot;);
+
+mock.AddFile(path, new MockFileData(&quot;hello&quot;));
+
+Assert.True(path.FileExists);
+Assert.Equal(&quot;file.txt&quot;, path.FileName);
+</code></pre>
+<h2 id="testing-code-that-depends-on-irootedfilesystem">Testing code that depends on <code>IRootedFileSystem</code></h2>
+<p>Wire up the DI container with a mock file system by overriding the keyed backing registration:</p>
+<pre><code class="lang-csharp">var mock = new MockFileSystem(new Dictionary&lt;string, MockFileData&gt;
+{
+    [&quot;/repo/src/App/App.csproj&quot;] = new(&quot;&lt;Project /&gt;&quot;),
+}, &quot;/repo&quot;);
+
+var services = new ServiceCollection();
+services.AddLogging();
+services.AddRootedFileSystem();
+
+// Replace the real file system with the mock.
+services.AddKeyedSingleton&lt;IFileSystem&gt;(&quot;RootedFileSystem&quot;, mock);
+
+services.ProvidePath((key, fs) =&gt; key switch
+{
+    &quot;Root&quot; =&gt; fs.CurrentDirectory,
+    _      =&gt; null,
+});
+
+using var provider = services.BuildServiceProvider();
+var fs = provider.GetRequiredService&lt;IRootedFileSystem&gt;();
+
+RootedPath csproj = fs.GetPath(&quot;Root&quot;) / &quot;src&quot; / &quot;App&quot; / &quot;App.csproj&quot;;
+Assert.True(csproj.FileExists);
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>MockFileSystem</code> lets you set the current directory (the second constructor argument above), which makes
+<code>IRootedFileSystem.CurrentDirectory</code> fully deterministic in tests.</p>
+</div>
+<h2 id="testing-transform-scopes">Testing transform scopes</h2>
+<p>Transform scopes work over whatever file system the <code>RootedPath</code> carries, so rollback behaviour is easy to verify:</p>
+<pre><code class="lang-csharp">var mock = new MockFileSystem();
+var file = new RootedPath(mock, &quot;/config.json&quot;);
+mock.AddFile(file, new MockFileData(&quot;&quot;&quot;{ &quot;version&quot;: &quot;1.0.0&quot; }&quot;&quot;&quot;));
+
+await using (await TransformFileScope.CreateAsync(file, c =&gt; c.Replace(&quot;1.0.0&quot;, &quot;2.0.0&quot;)))
+{
+    Assert.Contains(&quot;2.0.0&quot;, mock.File.ReadAllText(file));
+}
+
+// Restored after dispose.
+Assert.Contains(&quot;1.0.0&quot;, mock.File.ReadAllText(file));
+</code></pre>
+<h2 id="faking-path-resolution-in-unit-tests">Faking path resolution in unit tests</h2>
+<p>For code that takes <code>IRootedFileSystem</code>, you rarely need a full container — a provider registered inline is often
+enough, or you can substitute the interface entirely with your mocking library of choice (the interface's I/O members
+have default implementations that delegate to the <code>FileSystem</code> property, so only <code>FileSystem</code> and <code>GetPath</code> need
+stubbing).</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/filesystem/blob/main/docs/testing.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Invex.FileSystem — MIT licensed
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

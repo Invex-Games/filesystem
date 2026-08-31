@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Path Providers | Invex.FileSystem </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Path Providers | Invex.FileSystem ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/filesystem/blob/main/docs/path-providers.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Invex.FileSystem">
+            Invex.FileSystem
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="path-providers">Path Providers</h1>
+
+<p>Path resolution is decoupled from file I/O. <code>IRootedFileSystem.GetPath(string)</code> queries every registered
+<code>IPathProvider</code> in <strong>descending priority order</strong> and returns the first non-<code>null</code> result, caching it for subsequent
+calls.</p>
+<pre><code>GetPath(&quot;Artifacts&quot;)
+   │
+   ├─► Provider (priority 5)  → null        (doesn't recognise the key — skipped)
+   ├─► Provider (priority 1)  → RootedPath  (first non-null result wins)
+   └─► Provider (priority 0)                (never reached for this key)
+</code></pre>
+<h2 id="registering-providers-inline">Registering providers inline</h2>
+<p>The <code>ProvidePath</code> extension methods register a delegate-backed provider (<code>FunctionPathProvider</code>) without needing a
+dedicated class:</p>
+<pre><code class="lang-csharp">// Simple key -&gt; path mapping (priority defaults to 1).
+services.ProvidePath(key =&gt; key == &quot;Temp&quot;
+    ? new RootedPath(new FileSystem(), Path.GetTempPath())
+    : null);
+
+// Provider that depends on another resolved path.
+services.ProvidePath((key, fs) =&gt; key == &quot;Output&quot;
+    ? fs.GetPath(&quot;Root&quot;) / &quot;output&quot;
+    : null, priority: 5);
+</code></pre>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Use the <code>(key, fs)</code> overload whenever the path depends on <strong>another resolved path</strong>. The <code>IRootedFileSystem</code> is
+resolved lazily when the provider is first invoked, which avoids circular-construction problems at startup.
+Capturing the raw <code>IServiceProvider</code> in a closure and resolving <code>IRootedFileSystem</code> yourself risks a circular
+dependency.</p>
+</div>
+<h2 id="priorities-and-ordering">Priorities and ordering</h2>
+<ul>
+<li><strong>Higher values are queried first.</strong> When two providers can both resolve the same key, the one with the higher
+priority wins.</li>
+<li><strong>Equal priorities are queried in registration order</strong> (the sort is stable).</li>
+<li><strong>Use a negative priority</strong> for a low-priority fallback that only applies when no other provider matches.</li>
+<li>A provider that does not recognize a key must return <code>null</code> to pass resolution to the next provider in the chain.</li>
+</ul>
+<h2 id="caching">Caching</h2>
+<p>Results are cached per key after the first successful resolution. Repeated calls to <code>GetPath(&quot;Root&quot;)</code> return the same
+<code>RootedPath</code> instance without re-querying providers — so each provider's <code>GetPath</code> is called at most once per key per
+<code>IRootedFileSystem</code> lifetime.</p>
+<h2 id="custom-provider-implementations">Custom provider implementations</h2>
+<p>For complex resolution logic — searching the file system, reading configuration, combining multiple keys — implement
+<code>IPathProvider</code> directly and register it as a service:</p>
+<pre><code class="lang-csharp">public sealed class GitRootPathProvider(IFileSystem fileSystem) : IPathProvider
+{
+    public int Priority =&gt; 10;
+
+    public RootedPath? GetPath(string key)
+    {
+        if (key != &quot;GitRoot&quot;)
+            return null;
+
+        var dir = new RootedPath(fileSystem, fileSystem.Directory.GetCurrentDirectory());
+
+        while (dir is not null &amp;&amp; !(dir / &quot;.git&quot;).DirectoryExists)
+            dir = dir.Parent;
+
+        return dir;
+    }
+}
+</code></pre>
+<pre><code class="lang-csharp">services.AddSingleton&lt;IPathProvider, GitRootPathProvider&gt;();
+services.AddRootedFileSystem();
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Registration order relative to <code>AddRootedFileSystem()</code> does not matter — providers are collected from the container
+when <code>IRootedFileSystem</code> is first resolved.</p>
+</div>
+<h2 id="error-handling">Error handling</h2>
+<p>If no provider recognizes a key, <code>GetPath</code> throws <code>InvalidOperationException</code>:</p>
+<pre><code>Could not locate path for key 'Artifcats'
+</code></pre>
+<p>Providers may call <code>GetPath</code> for <em>other</em> keys while resolving their own (as in the <code>&quot;Output&quot;</code> example above). A
+recursion-depth guard throws <code>InvalidOperationException</code> if resolution nests more than 100 levels deep, which almost
+always indicates a circular key dependency such as <code>&quot;A&quot; → &quot;B&quot; → &quot;A&quot;</code>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/filesystem/blob/main/docs/path-providers.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Invex.FileSystem — MIT licensed
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

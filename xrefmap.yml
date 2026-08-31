@@ -1,0 +1,635 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Invex.FileSystem
+  name: Invex.FileSystem
+  href: api/Invex.FileSystem.html
+  commentId: N:Invex.FileSystem
+  fullName: Invex.FileSystem
+  nameWithType: Invex.FileSystem
+- uid: Invex.FileSystem.FileSystemHostExtensions
+  name: FileSystemHostExtensions
+  href: api/Invex.FileSystem.FileSystemHostExtensions.html
+  commentId: T:Invex.FileSystem.FileSystemHostExtensions
+  fullName: Invex.FileSystem.FileSystemHostExtensions
+  nameWithType: FileSystemHostExtensions
+- uid: Invex.FileSystem.FunctionPathProvider
+  name: FunctionPathProvider
+  href: api/Invex.FileSystem.FunctionPathProvider.html
+  commentId: T:Invex.FileSystem.FunctionPathProvider
+  fullName: Invex.FileSystem.FunctionPathProvider
+  nameWithType: FunctionPathProvider
+- uid: Invex.FileSystem.FunctionPathProvider.GetPath(System.String)
+  name: GetPath(string)
+  href: api/Invex.FileSystem.FunctionPathProvider.html#Invex_FileSystem_FunctionPathProvider_GetPath_System_String_
+  commentId: M:Invex.FileSystem.FunctionPathProvider.GetPath(System.String)
+  name.vb: GetPath(String)
+  fullName: Invex.FileSystem.FunctionPathProvider.GetPath(string)
+  fullName.vb: Invex.FileSystem.FunctionPathProvider.GetPath(String)
+  nameWithType: FunctionPathProvider.GetPath(string)
+  nameWithType.vb: FunctionPathProvider.GetPath(String)
+- uid: Invex.FileSystem.FunctionPathProvider.GetPath*
+  name: GetPath
+  href: api/Invex.FileSystem.FunctionPathProvider.html#Invex_FileSystem_FunctionPathProvider_GetPath_
+  commentId: Overload:Invex.FileSystem.FunctionPathProvider.GetPath
+  isSpec: "True"
+  fullName: Invex.FileSystem.FunctionPathProvider.GetPath
+  nameWithType: FunctionPathProvider.GetPath
+- uid: Invex.FileSystem.FunctionPathProvider.Priority
+  name: Priority
+  href: api/Invex.FileSystem.FunctionPathProvider.html#Invex_FileSystem_FunctionPathProvider_Priority
+  commentId: P:Invex.FileSystem.FunctionPathProvider.Priority
+  fullName: Invex.FileSystem.FunctionPathProvider.Priority
+  nameWithType: FunctionPathProvider.Priority
+- uid: Invex.FileSystem.FunctionPathProvider.Priority*
+  name: Priority
+  href: api/Invex.FileSystem.FunctionPathProvider.html#Invex_FileSystem_FunctionPathProvider_Priority_
+  commentId: Overload:Invex.FileSystem.FunctionPathProvider.Priority
+  isSpec: "True"
+  fullName: Invex.FileSystem.FunctionPathProvider.Priority
+  nameWithType: FunctionPathProvider.Priority
+- uid: Invex.FileSystem.FunctionPathProvider.Provider
+  name: Provider
+  href: api/Invex.FileSystem.FunctionPathProvider.html#Invex_FileSystem_FunctionPathProvider_Provider
+  commentId: P:Invex.FileSystem.FunctionPathProvider.Provider
+  fullName: Invex.FileSystem.FunctionPathProvider.Provider
+  nameWithType: FunctionPathProvider.Provider
+- uid: Invex.FileSystem.FunctionPathProvider.Provider*
+  name: Provider
+  href: api/Invex.FileSystem.FunctionPathProvider.html#Invex_FileSystem_FunctionPathProvider_Provider_
+  commentId: Overload:Invex.FileSystem.FunctionPathProvider.Provider
+  isSpec: "True"
+  fullName: Invex.FileSystem.FunctionPathProvider.Provider
+  nameWithType: FunctionPathProvider.Provider
+- uid: Invex.FileSystem.IPathMarker
+  name: IPathMarker
+  href: api/Invex.FileSystem.IPathMarker.html
+  commentId: T:Invex.FileSystem.IPathMarker
+  fullName: Invex.FileSystem.IPathMarker
+  nameWithType: IPathMarker
+- uid: Invex.FileSystem.IPathMarker.Path(System.IO.Abstractions.IFileSystem)
+  name: Path(IFileSystem)
+  href: api/Invex.FileSystem.IPathMarker.html#Invex_FileSystem_IPathMarker_Path_System_IO_Abstractions_IFileSystem_
+  commentId: M:Invex.FileSystem.IPathMarker.Path(System.IO.Abstractions.IFileSystem)
+  fullName: Invex.FileSystem.IPathMarker.Path(System.IO.Abstractions.IFileSystem)
+  nameWithType: IPathMarker.Path(IFileSystem)
+- uid: Invex.FileSystem.IPathMarker.Path*
+  name: Path
+  href: api/Invex.FileSystem.IPathMarker.html#Invex_FileSystem_IPathMarker_Path_
+  commentId: Overload:Invex.FileSystem.IPathMarker.Path
+  isSpec: "True"
+  fullName: Invex.FileSystem.IPathMarker.Path
+  nameWithType: IPathMarker.Path
+- uid: Invex.FileSystem.IPathProvider
+  name: IPathProvider
+  href: api/Invex.FileSystem.IPathProvider.html
+  commentId: T:Invex.FileSystem.IPathProvider
+  fullName: Invex.FileSystem.IPathProvider
+  nameWithType: IPathProvider
+- uid: Invex.FileSystem.IPathProvider.GetPath(System.String)
+  name: GetPath(string)
+  href: api/Invex.FileSystem.IPathProvider.html#Invex_FileSystem_IPathProvider_GetPath_System_String_
+  commentId: M:Invex.FileSystem.IPathProvider.GetPath(System.String)
+  name.vb: GetPath(String)
+  fullName: Invex.FileSystem.IPathProvider.GetPath(string)
+  fullName.vb: Invex.FileSystem.IPathProvider.GetPath(String)
+  nameWithType: IPathProvider.GetPath(string)
+  nameWithType.vb: IPathProvider.GetPath(String)
+- uid: Invex.FileSystem.IPathProvider.GetPath*
+  name: GetPath
+  href: api/Invex.FileSystem.IPathProvider.html#Invex_FileSystem_IPathProvider_GetPath_
+  commentId: Overload:Invex.FileSystem.IPathProvider.GetPath
+  isSpec: "True"
+  fullName: Invex.FileSystem.IPathProvider.GetPath
+  nameWithType: IPathProvider.GetPath
+- uid: Invex.FileSystem.IPathProvider.Priority
+  name: Priority
+  href: api/Invex.FileSystem.IPathProvider.html#Invex_FileSystem_IPathProvider_Priority
+  commentId: P:Invex.FileSystem.IPathProvider.Priority
+  fullName: Invex.FileSystem.IPathProvider.Priority
+  nameWithType: IPathProvider.Priority
+- uid: Invex.FileSystem.IPathProvider.Priority*
+  name: Priority
+  href: api/Invex.FileSystem.IPathProvider.html#Invex_FileSystem_IPathProvider_Priority_
+  commentId: Overload:Invex.FileSystem.IPathProvider.Priority
+  isSpec: "True"
+  fullName: Invex.FileSystem.IPathProvider.Priority
+  nameWithType: IPathProvider.Priority
+- uid: Invex.FileSystem.IRootedFileSystem
+  name: IRootedFileSystem
+  href: api/Invex.FileSystem.IRootedFileSystem.html
+  commentId: T:Invex.FileSystem.IRootedFileSystem
+  fullName: Invex.FileSystem.IRootedFileSystem
+  nameWithType: IRootedFileSystem
+- uid: Invex.FileSystem.IRootedFileSystem.CreateRootedPath(System.String)
+  name: CreateRootedPath(string)
+  href: api/Invex.FileSystem.IRootedFileSystem.html#Invex_FileSystem_IRootedFileSystem_CreateRootedPath_System_String_
+  commentId: M:Invex.FileSystem.IRootedFileSystem.CreateRootedPath(System.String)
+  name.vb: CreateRootedPath(String)
+  fullName: Invex.FileSystem.IRootedFileSystem.CreateRootedPath(string)
+  fullName.vb: Invex.FileSystem.IRootedFileSystem.CreateRootedPath(String)
+  nameWithType: IRootedFileSystem.CreateRootedPath(string)
+  nameWithType.vb: IRootedFileSystem.CreateRootedPath(String)
+- uid: Invex.FileSystem.IRootedFileSystem.CreateRootedPath*
+  name: CreateRootedPath
+  href: api/Invex.FileSystem.IRootedFileSystem.html#Invex_FileSystem_IRootedFileSystem_CreateRootedPath_
+  commentId: Overload:Invex.FileSystem.IRootedFileSystem.CreateRootedPath
+  isSpec: "True"
+  fullName: Invex.FileSystem.IRootedFileSystem.CreateRootedPath
+  nameWithType: IRootedFileSystem.CreateRootedPath
+- uid: Invex.FileSystem.IRootedFileSystem.CurrentDirectory
+  name: CurrentDirectory
+  href: api/Invex.FileSystem.IRootedFileSystem.html#Invex_FileSystem_IRootedFileSystem_CurrentDirectory
+  commentId: P:Invex.FileSystem.IRootedFileSystem.CurrentDirectory
+  fullName: Invex.FileSystem.IRootedFileSystem.CurrentDirectory
+  nameWithType: IRootedFileSystem.CurrentDirectory
+- uid: Invex.FileSystem.IRootedFileSystem.CurrentDirectory*
+  name: CurrentDirectory
+  href: api/Invex.FileSystem.IRootedFileSystem.html#Invex_FileSystem_IRootedFileSystem_CurrentDirectory_
+  commentId: Overload:Invex.FileSystem.IRootedFileSystem.CurrentDirectory
+  isSpec: "True"
+  fullName: Invex.FileSystem.IRootedFileSystem.CurrentDirectory
+  nameWithType: IRootedFileSystem.CurrentDirectory
+- uid: Invex.FileSystem.IRootedFileSystem.FileSystem
+  name: FileSystem
+  href: api/Invex.FileSystem.IRootedFileSystem.html#Invex_FileSystem_IRootedFileSystem_FileSystem
+  commentId: P:Invex.FileSystem.IRootedFileSystem.FileSystem
+  fullName: Invex.FileSystem.IRootedFileSystem.FileSystem
+  nameWithType: IRootedFileSystem.FileSystem
+- uid: Invex.FileSystem.IRootedFileSystem.FileSystem*
+  name: FileSystem
+  href: api/Invex.FileSystem.IRootedFileSystem.html#Invex_FileSystem_IRootedFileSystem_FileSystem_
+  commentId: Overload:Invex.FileSystem.IRootedFileSystem.FileSystem
+  isSpec: "True"
+  fullName: Invex.FileSystem.IRootedFileSystem.FileSystem
+  nameWithType: IRootedFileSystem.FileSystem
+- uid: Invex.FileSystem.IRootedFileSystem.GetPath(System.String)
+  name: GetPath(string)
+  href: api/Invex.FileSystem.IRootedFileSystem.html#Invex_FileSystem_IRootedFileSystem_GetPath_System_String_
+  commentId: M:Invex.FileSystem.IRootedFileSystem.GetPath(System.String)
+  name.vb: GetPath(String)
+  fullName: Invex.FileSystem.IRootedFileSystem.GetPath(string)
+  fullName.vb: Invex.FileSystem.IRootedFileSystem.GetPath(String)
+  nameWithType: IRootedFileSystem.GetPath(string)
+  nameWithType.vb: IRootedFileSystem.GetPath(String)
+- uid: Invex.FileSystem.IRootedFileSystem.GetPath*
+  name: GetPath
+  href: api/Invex.FileSystem.IRootedFileSystem.html#Invex_FileSystem_IRootedFileSystem_GetPath_
+  commentId: Overload:Invex.FileSystem.IRootedFileSystem.GetPath
+  isSpec: "True"
+  fullName: Invex.FileSystem.IRootedFileSystem.GetPath
+  nameWithType: IRootedFileSystem.GetPath
+- uid: Invex.FileSystem.IRootedFileSystem.GetPath``1
+  name: GetPath<T>()
+  href: api/Invex.FileSystem.IRootedFileSystem.html#Invex_FileSystem_IRootedFileSystem_GetPath__1
+  commentId: M:Invex.FileSystem.IRootedFileSystem.GetPath``1
+  name.vb: GetPath(Of T)()
+  fullName: Invex.FileSystem.IRootedFileSystem.GetPath<T>()
+  fullName.vb: Invex.FileSystem.IRootedFileSystem.GetPath(Of T)()
+  nameWithType: IRootedFileSystem.GetPath<T>()
+  nameWithType.vb: IRootedFileSystem.GetPath(Of T)()
+- uid: Invex.FileSystem.RootedPath
+  name: RootedPath
+  href: api/Invex.FileSystem.RootedPath.html
+  commentId: T:Invex.FileSystem.RootedPath
+  fullName: Invex.FileSystem.RootedPath
+  nameWithType: RootedPath
+- uid: Invex.FileSystem.RootedPath.#ctor(System.IO.Abstractions.IFileSystem,System.String)
+  name: RootedPath(IFileSystem, string)
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath__ctor_System_IO_Abstractions_IFileSystem_System_String_
+  commentId: M:Invex.FileSystem.RootedPath.#ctor(System.IO.Abstractions.IFileSystem,System.String)
+  name.vb: New(IFileSystem, String)
+  fullName: Invex.FileSystem.RootedPath.RootedPath(System.IO.Abstractions.IFileSystem, string)
+  fullName.vb: Invex.FileSystem.RootedPath.New(System.IO.Abstractions.IFileSystem, String)
+  nameWithType: RootedPath.RootedPath(IFileSystem, string)
+  nameWithType.vb: RootedPath.New(IFileSystem, String)
+- uid: Invex.FileSystem.RootedPath.#ctor*
+  name: RootedPath
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath__ctor_
+  commentId: Overload:Invex.FileSystem.RootedPath.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Invex.FileSystem.RootedPath.RootedPath
+  fullName.vb: Invex.FileSystem.RootedPath.New
+  nameWithType: RootedPath.RootedPath
+  nameWithType.vb: RootedPath.New
+- uid: Invex.FileSystem.RootedPath.DirectoryExists
+  name: DirectoryExists
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_DirectoryExists
+  commentId: P:Invex.FileSystem.RootedPath.DirectoryExists
+  fullName: Invex.FileSystem.RootedPath.DirectoryExists
+  nameWithType: RootedPath.DirectoryExists
+- uid: Invex.FileSystem.RootedPath.DirectoryExists*
+  name: DirectoryExists
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_DirectoryExists_
+  commentId: Overload:Invex.FileSystem.RootedPath.DirectoryExists
+  isSpec: "True"
+  fullName: Invex.FileSystem.RootedPath.DirectoryExists
+  nameWithType: RootedPath.DirectoryExists
+- uid: Invex.FileSystem.RootedPath.DirectoryName
+  name: DirectoryName
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_DirectoryName
+  commentId: P:Invex.FileSystem.RootedPath.DirectoryName
+  fullName: Invex.FileSystem.RootedPath.DirectoryName
+  nameWithType: RootedPath.DirectoryName
+- uid: Invex.FileSystem.RootedPath.DirectoryName*
+  name: DirectoryName
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_DirectoryName_
+  commentId: Overload:Invex.FileSystem.RootedPath.DirectoryName
+  isSpec: "True"
+  fullName: Invex.FileSystem.RootedPath.DirectoryName
+  nameWithType: RootedPath.DirectoryName
+- uid: Invex.FileSystem.RootedPath.FileExists
+  name: FileExists
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_FileExists
+  commentId: P:Invex.FileSystem.RootedPath.FileExists
+  fullName: Invex.FileSystem.RootedPath.FileExists
+  nameWithType: RootedPath.FileExists
+- uid: Invex.FileSystem.RootedPath.FileExists*
+  name: FileExists
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_FileExists_
+  commentId: Overload:Invex.FileSystem.RootedPath.FileExists
+  isSpec: "True"
+  fullName: Invex.FileSystem.RootedPath.FileExists
+  nameWithType: RootedPath.FileExists
+- uid: Invex.FileSystem.RootedPath.FileName
+  name: FileName
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_FileName
+  commentId: P:Invex.FileSystem.RootedPath.FileName
+  fullName: Invex.FileSystem.RootedPath.FileName
+  nameWithType: RootedPath.FileName
+- uid: Invex.FileSystem.RootedPath.FileName*
+  name: FileName
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_FileName_
+  commentId: Overload:Invex.FileSystem.RootedPath.FileName
+  isSpec: "True"
+  fullName: Invex.FileSystem.RootedPath.FileName
+  nameWithType: RootedPath.FileName
+- uid: Invex.FileSystem.RootedPath.FileNameWithoutExtension
+  name: FileNameWithoutExtension
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_FileNameWithoutExtension
+  commentId: P:Invex.FileSystem.RootedPath.FileNameWithoutExtension
+  fullName: Invex.FileSystem.RootedPath.FileNameWithoutExtension
+  nameWithType: RootedPath.FileNameWithoutExtension
+- uid: Invex.FileSystem.RootedPath.FileNameWithoutExtension*
+  name: FileNameWithoutExtension
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_FileNameWithoutExtension_
+  commentId: Overload:Invex.FileSystem.RootedPath.FileNameWithoutExtension
+  isSpec: "True"
+  fullName: Invex.FileSystem.RootedPath.FileNameWithoutExtension
+  nameWithType: RootedPath.FileNameWithoutExtension
+- uid: Invex.FileSystem.RootedPath.FileSystem
+  name: FileSystem
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_FileSystem
+  commentId: P:Invex.FileSystem.RootedPath.FileSystem
+  fullName: Invex.FileSystem.RootedPath.FileSystem
+  nameWithType: RootedPath.FileSystem
+- uid: Invex.FileSystem.RootedPath.FileSystem*
+  name: FileSystem
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_FileSystem_
+  commentId: Overload:Invex.FileSystem.RootedPath.FileSystem
+  isSpec: "True"
+  fullName: Invex.FileSystem.RootedPath.FileSystem
+  nameWithType: RootedPath.FileSystem
+- uid: Invex.FileSystem.RootedPath.Parent
+  name: Parent
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_Parent
+  commentId: P:Invex.FileSystem.RootedPath.Parent
+  fullName: Invex.FileSystem.RootedPath.Parent
+  nameWithType: RootedPath.Parent
+- uid: Invex.FileSystem.RootedPath.Parent*
+  name: Parent
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_Parent_
+  commentId: Overload:Invex.FileSystem.RootedPath.Parent
+  isSpec: "True"
+  fullName: Invex.FileSystem.RootedPath.Parent
+  nameWithType: RootedPath.Parent
+- uid: Invex.FileSystem.RootedPath.Path
+  name: Path
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_Path
+  commentId: P:Invex.FileSystem.RootedPath.Path
+  fullName: Invex.FileSystem.RootedPath.Path
+  nameWithType: RootedPath.Path
+- uid: Invex.FileSystem.RootedPath.Path*
+  name: Path
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_Path_
+  commentId: Overload:Invex.FileSystem.RootedPath.Path
+  isSpec: "True"
+  fullName: Invex.FileSystem.RootedPath.Path
+  nameWithType: RootedPath.Path
+- uid: Invex.FileSystem.RootedPath.PathExists
+  name: PathExists
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_PathExists
+  commentId: P:Invex.FileSystem.RootedPath.PathExists
+  fullName: Invex.FileSystem.RootedPath.PathExists
+  nameWithType: RootedPath.PathExists
+- uid: Invex.FileSystem.RootedPath.PathExists*
+  name: PathExists
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_PathExists_
+  commentId: Overload:Invex.FileSystem.RootedPath.PathExists
+  isSpec: "True"
+  fullName: Invex.FileSystem.RootedPath.PathExists
+  nameWithType: RootedPath.PathExists
+- uid: Invex.FileSystem.RootedPath.ToString
+  name: ToString()
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_ToString
+  commentId: M:Invex.FileSystem.RootedPath.ToString
+  fullName: Invex.FileSystem.RootedPath.ToString()
+  nameWithType: RootedPath.ToString()
+- uid: Invex.FileSystem.RootedPath.ToString*
+  name: ToString
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_ToString_
+  commentId: Overload:Invex.FileSystem.RootedPath.ToString
+  isSpec: "True"
+  fullName: Invex.FileSystem.RootedPath.ToString
+  nameWithType: RootedPath.ToString
+- uid: Invex.FileSystem.RootedPath.op_Division(Invex.FileSystem.RootedPath,System.String)
+  name: operator /(RootedPath, string)
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_op_Division_Invex_FileSystem_RootedPath_System_String_
+  commentId: M:Invex.FileSystem.RootedPath.op_Division(Invex.FileSystem.RootedPath,System.String)
+  name.vb: /(RootedPath, String)
+  fullName: Invex.FileSystem.RootedPath.operator /(Invex.FileSystem.RootedPath, string)
+  fullName.vb: Invex.FileSystem.RootedPath./(Invex.FileSystem.RootedPath, String)
+  nameWithType: RootedPath.operator /(RootedPath, string)
+  nameWithType.vb: RootedPath./(RootedPath, String)
+- uid: Invex.FileSystem.RootedPath.op_Division*
+  name: operator /
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_op_Division_
+  commentId: Overload:Invex.FileSystem.RootedPath.op_Division
+  isSpec: "True"
+  name.vb: /
+  fullName: Invex.FileSystem.RootedPath.operator /
+  fullName.vb: Invex.FileSystem.RootedPath./
+  nameWithType: RootedPath.operator /
+  nameWithType.vb: RootedPath./
+- uid: Invex.FileSystem.RootedPath.op_Implicit(Invex.FileSystem.RootedPath)~System.String
+  name: implicit operator string(RootedPath)
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_op_Implicit_Invex_FileSystem_RootedPath__System_String
+  commentId: M:Invex.FileSystem.RootedPath.op_Implicit(Invex.FileSystem.RootedPath)~System.String
+  name.vb: CType(RootedPath)
+  fullName: Invex.FileSystem.RootedPath.implicit operator string(Invex.FileSystem.RootedPath)
+  fullName.vb: Invex.FileSystem.RootedPath.CType(Invex.FileSystem.RootedPath)
+  nameWithType: RootedPath.implicit operator string(RootedPath)
+  nameWithType.vb: RootedPath.CType(RootedPath)
+- uid: Invex.FileSystem.RootedPath.op_Implicit*
+  name: implicit operator
+  href: api/Invex.FileSystem.RootedPath.html#Invex_FileSystem_RootedPath_op_Implicit_
+  commentId: Overload:Invex.FileSystem.RootedPath.op_Implicit
+  isSpec: "True"
+  name.vb: CType
+  fullName: Invex.FileSystem.RootedPath.implicit operator
+  fullName.vb: Invex.FileSystem.RootedPath.CType
+  nameWithType: RootedPath.implicit operator
+  nameWithType.vb: RootedPath.CType
+- uid: Invex.FileSystem.TransformFileScope
+  name: TransformFileScope
+  href: api/Invex.FileSystem.TransformFileScope.html
+  commentId: T:Invex.FileSystem.TransformFileScope
+  fullName: Invex.FileSystem.TransformFileScope
+  nameWithType: TransformFileScope
+- uid: Invex.FileSystem.TransformFileScope.Add(System.Func{System.String,System.String})
+  name: Add(Func<string, string>)
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_Add_System_Func_System_String_System_String__
+  commentId: M:Invex.FileSystem.TransformFileScope.Add(System.Func{System.String,System.String})
+  name.vb: Add(Func(Of String, String))
+  fullName: Invex.FileSystem.TransformFileScope.Add(System.Func<string, string>)
+  fullName.vb: Invex.FileSystem.TransformFileScope.Add(System.Func(Of String, String))
+  nameWithType: TransformFileScope.Add(Func<string, string>)
+  nameWithType.vb: TransformFileScope.Add(Func(Of String, String))
+- uid: Invex.FileSystem.TransformFileScope.Add*
+  name: Add
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_Add_
+  commentId: Overload:Invex.FileSystem.TransformFileScope.Add
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformFileScope.Add
+  nameWithType: TransformFileScope.Add
+- uid: Invex.FileSystem.TransformFileScope.AddAsync(System.Func{System.String,System.String},System.Threading.CancellationToken)
+  name: AddAsync(Func<string, string>, CancellationToken)
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_AddAsync_System_Func_System_String_System_String__System_Threading_CancellationToken_
+  commentId: M:Invex.FileSystem.TransformFileScope.AddAsync(System.Func{System.String,System.String},System.Threading.CancellationToken)
+  name.vb: AddAsync(Func(Of String, String), CancellationToken)
+  fullName: Invex.FileSystem.TransformFileScope.AddAsync(System.Func<string, string>, System.Threading.CancellationToken)
+  fullName.vb: Invex.FileSystem.TransformFileScope.AddAsync(System.Func(Of String, String), System.Threading.CancellationToken)
+  nameWithType: TransformFileScope.AddAsync(Func<string, string>, CancellationToken)
+  nameWithType.vb: TransformFileScope.AddAsync(Func(Of String, String), CancellationToken)
+- uid: Invex.FileSystem.TransformFileScope.AddAsync*
+  name: AddAsync
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_AddAsync_
+  commentId: Overload:Invex.FileSystem.TransformFileScope.AddAsync
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformFileScope.AddAsync
+  nameWithType: TransformFileScope.AddAsync
+- uid: Invex.FileSystem.TransformFileScope.CancelRestore
+  name: CancelRestore()
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_CancelRestore
+  commentId: M:Invex.FileSystem.TransformFileScope.CancelRestore
+  fullName: Invex.FileSystem.TransformFileScope.CancelRestore()
+  nameWithType: TransformFileScope.CancelRestore()
+- uid: Invex.FileSystem.TransformFileScope.CancelRestore*
+  name: CancelRestore
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_CancelRestore_
+  commentId: Overload:Invex.FileSystem.TransformFileScope.CancelRestore
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformFileScope.CancelRestore
+  nameWithType: TransformFileScope.CancelRestore
+- uid: Invex.FileSystem.TransformFileScope.Create(Invex.FileSystem.RootedPath,System.Func{System.String,System.String})
+  name: Create(RootedPath, Func<string, string>)
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_Create_Invex_FileSystem_RootedPath_System_Func_System_String_System_String__
+  commentId: M:Invex.FileSystem.TransformFileScope.Create(Invex.FileSystem.RootedPath,System.Func{System.String,System.String})
+  name.vb: Create(RootedPath, Func(Of String, String))
+  fullName: Invex.FileSystem.TransformFileScope.Create(Invex.FileSystem.RootedPath, System.Func<string, string>)
+  fullName.vb: Invex.FileSystem.TransformFileScope.Create(Invex.FileSystem.RootedPath, System.Func(Of String, String))
+  nameWithType: TransformFileScope.Create(RootedPath, Func<string, string>)
+  nameWithType.vb: TransformFileScope.Create(RootedPath, Func(Of String, String))
+- uid: Invex.FileSystem.TransformFileScope.Create*
+  name: Create
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_Create_
+  commentId: Overload:Invex.FileSystem.TransformFileScope.Create
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformFileScope.Create
+  nameWithType: TransformFileScope.Create
+- uid: Invex.FileSystem.TransformFileScope.CreateAsync(Invex.FileSystem.RootedPath,System.Func{System.String,System.String},System.Threading.CancellationToken)
+  name: CreateAsync(RootedPath, Func<string, string>, CancellationToken)
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_CreateAsync_Invex_FileSystem_RootedPath_System_Func_System_String_System_String__System_Threading_CancellationToken_
+  commentId: M:Invex.FileSystem.TransformFileScope.CreateAsync(Invex.FileSystem.RootedPath,System.Func{System.String,System.String},System.Threading.CancellationToken)
+  name.vb: CreateAsync(RootedPath, Func(Of String, String), CancellationToken)
+  fullName: Invex.FileSystem.TransformFileScope.CreateAsync(Invex.FileSystem.RootedPath, System.Func<string, string>, System.Threading.CancellationToken)
+  fullName.vb: Invex.FileSystem.TransformFileScope.CreateAsync(Invex.FileSystem.RootedPath, System.Func(Of String, String), System.Threading.CancellationToken)
+  nameWithType: TransformFileScope.CreateAsync(RootedPath, Func<string, string>, CancellationToken)
+  nameWithType.vb: TransformFileScope.CreateAsync(RootedPath, Func(Of String, String), CancellationToken)
+- uid: Invex.FileSystem.TransformFileScope.CreateAsync*
+  name: CreateAsync
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_CreateAsync_
+  commentId: Overload:Invex.FileSystem.TransformFileScope.CreateAsync
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformFileScope.CreateAsync
+  nameWithType: TransformFileScope.CreateAsync
+- uid: Invex.FileSystem.TransformFileScope.Dispose
+  name: Dispose()
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_Dispose
+  commentId: M:Invex.FileSystem.TransformFileScope.Dispose
+  fullName: Invex.FileSystem.TransformFileScope.Dispose()
+  nameWithType: TransformFileScope.Dispose()
+- uid: Invex.FileSystem.TransformFileScope.Dispose*
+  name: Dispose
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_Dispose_
+  commentId: Overload:Invex.FileSystem.TransformFileScope.Dispose
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformFileScope.Dispose
+  nameWithType: TransformFileScope.Dispose
+- uid: Invex.FileSystem.TransformFileScope.DisposeAsync
+  name: DisposeAsync()
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_DisposeAsync
+  commentId: M:Invex.FileSystem.TransformFileScope.DisposeAsync
+  fullName: Invex.FileSystem.TransformFileScope.DisposeAsync()
+  nameWithType: TransformFileScope.DisposeAsync()
+- uid: Invex.FileSystem.TransformFileScope.DisposeAsync*
+  name: DisposeAsync
+  href: api/Invex.FileSystem.TransformFileScope.html#Invex_FileSystem_TransformFileScope_DisposeAsync_
+  commentId: Overload:Invex.FileSystem.TransformFileScope.DisposeAsync
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformFileScope.DisposeAsync
+  nameWithType: TransformFileScope.DisposeAsync
+- uid: Invex.FileSystem.TransformFileScopeExtensions
+  name: TransformFileScopeExtensions
+  href: api/Invex.FileSystem.TransformFileScopeExtensions.html
+  commentId: T:Invex.FileSystem.TransformFileScopeExtensions
+  fullName: Invex.FileSystem.TransformFileScopeExtensions
+  nameWithType: TransformFileScopeExtensions
+- uid: Invex.FileSystem.TransformFileScopeExtensions.AddAsync(System.Threading.Tasks.Task{Invex.FileSystem.TransformFileScope},System.Func{System.String,System.String})
+  name: AddAsync(Task<TransformFileScope>, Func<string, string>)
+  href: api/Invex.FileSystem.TransformFileScopeExtensions.html#Invex_FileSystem_TransformFileScopeExtensions_AddAsync_System_Threading_Tasks_Task_Invex_FileSystem_TransformFileScope__System_Func_System_String_System_String__
+  commentId: M:Invex.FileSystem.TransformFileScopeExtensions.AddAsync(System.Threading.Tasks.Task{Invex.FileSystem.TransformFileScope},System.Func{System.String,System.String})
+  name.vb: AddAsync(Task(Of TransformFileScope), Func(Of String, String))
+  fullName: Invex.FileSystem.TransformFileScopeExtensions.AddAsync(System.Threading.Tasks.Task<Invex.FileSystem.TransformFileScope>, System.Func<string, string>)
+  fullName.vb: Invex.FileSystem.TransformFileScopeExtensions.AddAsync(System.Threading.Tasks.Task(Of Invex.FileSystem.TransformFileScope), System.Func(Of String, String))
+  nameWithType: TransformFileScopeExtensions.AddAsync(Task<TransformFileScope>, Func<string, string>)
+  nameWithType.vb: TransformFileScopeExtensions.AddAsync(Task(Of TransformFileScope), Func(Of String, String))
+- uid: Invex.FileSystem.TransformFileScopeExtensions.AddAsync(System.Threading.Tasks.Task{Invex.FileSystem.TransformMultiFileScope},System.Func{System.String,System.String})
+  name: AddAsync(Task<TransformMultiFileScope>, Func<string, string>)
+  href: api/Invex.FileSystem.TransformFileScopeExtensions.html#Invex_FileSystem_TransformFileScopeExtensions_AddAsync_System_Threading_Tasks_Task_Invex_FileSystem_TransformMultiFileScope__System_Func_System_String_System_String__
+  commentId: M:Invex.FileSystem.TransformFileScopeExtensions.AddAsync(System.Threading.Tasks.Task{Invex.FileSystem.TransformMultiFileScope},System.Func{System.String,System.String})
+  name.vb: AddAsync(Task(Of TransformMultiFileScope), Func(Of String, String))
+  fullName: Invex.FileSystem.TransformFileScopeExtensions.AddAsync(System.Threading.Tasks.Task<Invex.FileSystem.TransformMultiFileScope>, System.Func<string, string>)
+  fullName.vb: Invex.FileSystem.TransformFileScopeExtensions.AddAsync(System.Threading.Tasks.Task(Of Invex.FileSystem.TransformMultiFileScope), System.Func(Of String, String))
+  nameWithType: TransformFileScopeExtensions.AddAsync(Task<TransformMultiFileScope>, Func<string, string>)
+  nameWithType.vb: TransformFileScopeExtensions.AddAsync(Task(Of TransformMultiFileScope), Func(Of String, String))
+- uid: Invex.FileSystem.TransformFileScopeExtensions.AddAsync*
+  name: AddAsync
+  href: api/Invex.FileSystem.TransformFileScopeExtensions.html#Invex_FileSystem_TransformFileScopeExtensions_AddAsync_
+  commentId: Overload:Invex.FileSystem.TransformFileScopeExtensions.AddAsync
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformFileScopeExtensions.AddAsync
+  nameWithType: TransformFileScopeExtensions.AddAsync
+- uid: Invex.FileSystem.TransformMultiFileScope
+  name: TransformMultiFileScope
+  href: api/Invex.FileSystem.TransformMultiFileScope.html
+  commentId: T:Invex.FileSystem.TransformMultiFileScope
+  fullName: Invex.FileSystem.TransformMultiFileScope
+  nameWithType: TransformMultiFileScope
+- uid: Invex.FileSystem.TransformMultiFileScope.Add(System.Func{System.String,System.String})
+  name: Add(Func<string, string>)
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_Add_System_Func_System_String_System_String__
+  commentId: M:Invex.FileSystem.TransformMultiFileScope.Add(System.Func{System.String,System.String})
+  name.vb: Add(Func(Of String, String))
+  fullName: Invex.FileSystem.TransformMultiFileScope.Add(System.Func<string, string>)
+  fullName.vb: Invex.FileSystem.TransformMultiFileScope.Add(System.Func(Of String, String))
+  nameWithType: TransformMultiFileScope.Add(Func<string, string>)
+  nameWithType.vb: TransformMultiFileScope.Add(Func(Of String, String))
+- uid: Invex.FileSystem.TransformMultiFileScope.Add*
+  name: Add
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_Add_
+  commentId: Overload:Invex.FileSystem.TransformMultiFileScope.Add
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformMultiFileScope.Add
+  nameWithType: TransformMultiFileScope.Add
+- uid: Invex.FileSystem.TransformMultiFileScope.AddAsync(System.Func{System.String,System.String},System.Threading.CancellationToken)
+  name: AddAsync(Func<string, string>, CancellationToken)
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_AddAsync_System_Func_System_String_System_String__System_Threading_CancellationToken_
+  commentId: M:Invex.FileSystem.TransformMultiFileScope.AddAsync(System.Func{System.String,System.String},System.Threading.CancellationToken)
+  name.vb: AddAsync(Func(Of String, String), CancellationToken)
+  fullName: Invex.FileSystem.TransformMultiFileScope.AddAsync(System.Func<string, string>, System.Threading.CancellationToken)
+  fullName.vb: Invex.FileSystem.TransformMultiFileScope.AddAsync(System.Func(Of String, String), System.Threading.CancellationToken)
+  nameWithType: TransformMultiFileScope.AddAsync(Func<string, string>, CancellationToken)
+  nameWithType.vb: TransformMultiFileScope.AddAsync(Func(Of String, String), CancellationToken)
+- uid: Invex.FileSystem.TransformMultiFileScope.AddAsync*
+  name: AddAsync
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_AddAsync_
+  commentId: Overload:Invex.FileSystem.TransformMultiFileScope.AddAsync
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformMultiFileScope.AddAsync
+  nameWithType: TransformMultiFileScope.AddAsync
+- uid: Invex.FileSystem.TransformMultiFileScope.CancelRestore
+  name: CancelRestore()
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_CancelRestore
+  commentId: M:Invex.FileSystem.TransformMultiFileScope.CancelRestore
+  fullName: Invex.FileSystem.TransformMultiFileScope.CancelRestore()
+  nameWithType: TransformMultiFileScope.CancelRestore()
+- uid: Invex.FileSystem.TransformMultiFileScope.CancelRestore*
+  name: CancelRestore
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_CancelRestore_
+  commentId: Overload:Invex.FileSystem.TransformMultiFileScope.CancelRestore
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformMultiFileScope.CancelRestore
+  nameWithType: TransformMultiFileScope.CancelRestore
+- uid: Invex.FileSystem.TransformMultiFileScope.Create(System.Collections.Generic.IEnumerable{Invex.FileSystem.RootedPath},System.Func{System.String,System.String})
+  name: Create(IEnumerable<RootedPath>, Func<string, string>)
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_Create_System_Collections_Generic_IEnumerable_Invex_FileSystem_RootedPath__System_Func_System_String_System_String__
+  commentId: M:Invex.FileSystem.TransformMultiFileScope.Create(System.Collections.Generic.IEnumerable{Invex.FileSystem.RootedPath},System.Func{System.String,System.String})
+  name.vb: Create(IEnumerable(Of RootedPath), Func(Of String, String))
+  fullName: Invex.FileSystem.TransformMultiFileScope.Create(System.Collections.Generic.IEnumerable<Invex.FileSystem.RootedPath>, System.Func<string, string>)
+  fullName.vb: Invex.FileSystem.TransformMultiFileScope.Create(System.Collections.Generic.IEnumerable(Of Invex.FileSystem.RootedPath), System.Func(Of String, String))
+  nameWithType: TransformMultiFileScope.Create(IEnumerable<RootedPath>, Func<string, string>)
+  nameWithType.vb: TransformMultiFileScope.Create(IEnumerable(Of RootedPath), Func(Of String, String))
+- uid: Invex.FileSystem.TransformMultiFileScope.Create*
+  name: Create
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_Create_
+  commentId: Overload:Invex.FileSystem.TransformMultiFileScope.Create
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformMultiFileScope.Create
+  nameWithType: TransformMultiFileScope.Create
+- uid: Invex.FileSystem.TransformMultiFileScope.CreateAsync(System.Collections.Generic.IEnumerable{Invex.FileSystem.RootedPath},System.Func{System.String,System.String},System.Threading.CancellationToken)
+  name: CreateAsync(IEnumerable<RootedPath>, Func<string, string>, CancellationToken)
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_CreateAsync_System_Collections_Generic_IEnumerable_Invex_FileSystem_RootedPath__System_Func_System_String_System_String__System_Threading_CancellationToken_
+  commentId: M:Invex.FileSystem.TransformMultiFileScope.CreateAsync(System.Collections.Generic.IEnumerable{Invex.FileSystem.RootedPath},System.Func{System.String,System.String},System.Threading.CancellationToken)
+  name.vb: CreateAsync(IEnumerable(Of RootedPath), Func(Of String, String), CancellationToken)
+  fullName: Invex.FileSystem.TransformMultiFileScope.CreateAsync(System.Collections.Generic.IEnumerable<Invex.FileSystem.RootedPath>, System.Func<string, string>, System.Threading.CancellationToken)
+  fullName.vb: Invex.FileSystem.TransformMultiFileScope.CreateAsync(System.Collections.Generic.IEnumerable(Of Invex.FileSystem.RootedPath), System.Func(Of String, String), System.Threading.CancellationToken)
+  nameWithType: TransformMultiFileScope.CreateAsync(IEnumerable<RootedPath>, Func<string, string>, CancellationToken)
+  nameWithType.vb: TransformMultiFileScope.CreateAsync(IEnumerable(Of RootedPath), Func(Of String, String), CancellationToken)
+- uid: Invex.FileSystem.TransformMultiFileScope.CreateAsync*
+  name: CreateAsync
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_CreateAsync_
+  commentId: Overload:Invex.FileSystem.TransformMultiFileScope.CreateAsync
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformMultiFileScope.CreateAsync
+  nameWithType: TransformMultiFileScope.CreateAsync
+- uid: Invex.FileSystem.TransformMultiFileScope.Dispose
+  name: Dispose()
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_Dispose
+  commentId: M:Invex.FileSystem.TransformMultiFileScope.Dispose
+  fullName: Invex.FileSystem.TransformMultiFileScope.Dispose()
+  nameWithType: TransformMultiFileScope.Dispose()
+- uid: Invex.FileSystem.TransformMultiFileScope.Dispose*
+  name: Dispose
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_Dispose_
+  commentId: Overload:Invex.FileSystem.TransformMultiFileScope.Dispose
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformMultiFileScope.Dispose
+  nameWithType: TransformMultiFileScope.Dispose
+- uid: Invex.FileSystem.TransformMultiFileScope.DisposeAsync
+  name: DisposeAsync()
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_DisposeAsync
+  commentId: M:Invex.FileSystem.TransformMultiFileScope.DisposeAsync
+  fullName: Invex.FileSystem.TransformMultiFileScope.DisposeAsync()
+  nameWithType: TransformMultiFileScope.DisposeAsync()
+- uid: Invex.FileSystem.TransformMultiFileScope.DisposeAsync*
+  name: DisposeAsync
+  href: api/Invex.FileSystem.TransformMultiFileScope.html#Invex_FileSystem_TransformMultiFileScope_DisposeAsync_
+  commentId: Overload:Invex.FileSystem.TransformMultiFileScope.DisposeAsync
+  isSpec: "True"
+  fullName: Invex.FileSystem.TransformMultiFileScope.DisposeAsync
+  nameWithType: TransformMultiFileScope.DisposeAsync
+- uid: index
+  name: index
+  href: index.html
