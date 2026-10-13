@@ -33,7 +33,14 @@ dotnet add package Invex.FileSystem
 The package targets **.NET 8.0**, **.NET 9.0** and **.NET 10.0**. It depends on `System.IO.Abstractions`,
 `Microsoft.Extensions.DependencyInjection.Abstractions` and `Microsoft.Extensions.Hosting.Abstractions`. The rooted file
 system logs path resolutions through `ILogger`, so register logging (for example `services.AddLogging()`) in your
-container.
+container. Generic-host apps already have both; a standalone console or build tool also needs the
+`Microsoft.Extensions.DependencyInjection` and `Microsoft.Extensions.Logging` packages for `BuildServiceProvider()` and
+`AddLogging()`:
+
+```shell
+dotnet add package Microsoft.Extensions.DependencyInjection
+dotnet add package Microsoft.Extensions.Logging
+```
 
 ## Quick start
 
