@@ -220,6 +220,20 @@ internal sealed class RootedFileSystemTests
             () => result.FileSystem.ShouldBeSameAs(atomFs));
     }
 
+    [Test]
+    public void RandomAccess_DelegatesToInnerFileSystem()
+    {
+        // Arrange
+        var mockFs = new MockFileSystem();
+        IFileSystem atomFs = CreateAtomFileSystem(fileSystem: mockFs);
+
+        // Act
+        var result = atomFs.RandomAccess;
+
+        // Assert
+        result.ShouldBeSameAs(mockFs.RandomAccess);
+    }
+
     [UsedImplicitly(Reason = "Test code")]
     private sealed class TestPathMarker : IPathMarker
     {
