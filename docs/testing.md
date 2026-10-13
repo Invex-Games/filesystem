@@ -82,3 +82,8 @@ enough, or you can substitute the interface entirely with your mocking library o
 have default implementations that delegate to the `FileSystem` property, so only `FileSystem` and `GetPath` need
 stubbing).
 
+## See also
+
+- [Getting Started](getting-started.md): the registrations `AddRootedFileSystem()` makes.
+- [File Transform Scopes](transform-scopes.md): rollback behavior in detail.
+- <xref:Invex.FileSystem.IRootedFileSystem> and <xref:Invex.FileSystem.RootedPath>

@@ -86,3 +86,8 @@ reference and `Path` string. Use `with` expressions to derive new paths:
 RootedPath renamed = path with { Path = path.Path.Replace(".txt", ".md") };
 ```
 
+## See also
+
+- [Path Providers](path-providers.md): resolving rooted paths by key.
+- [Testing](testing.md): rooted paths over a `MockFileSystem`.
+- <xref:Invex.FileSystem.RootedPath> and <xref:Invex.FileSystem.IRootedFileSystem>
