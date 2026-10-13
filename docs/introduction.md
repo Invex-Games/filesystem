@@ -1,6 +1,7 @@
 # Introduction
 
-`Invex.FileSystem` is a strongly-typed file system library for .NET. It builds on
+`Invex.FileSystem` is a strongly-typed file system library for .NET. This page explains the problems it solves, when
+it is (and is not) a good fit, and the ideas the rest of the documentation builds on. It builds on
 [`System.IO.Abstractions`](https://github.com/TestableIO/System.IO.Abstractions) and adds two core capabilities:
 
 1. **Keyed path resolution** — resolve well-known locations (such as `"Root"` or `"Artifacts"`) by key through a
@@ -30,7 +31,7 @@ Build scripts, code generators, and developer tooling all share the same pain po
 
 ## The pieces at a glance
 
-```
+```text
 ┌──────────────────────────────────────────────────────────┐
 │ IRootedFileSystem  (implements IFileSystem)              │
 │                                                          │
@@ -50,8 +51,40 @@ Build scripts, code generators, and developer tooling all share the same pain po
 - **`IPathProvider`** implementations answer "where is *X*?" — one provider per concern, queried in priority order.
 - **`TransformFileScope`** / **`TransformMultiFileScope`** make temporary file edits safe.
 
+## When to use it
+
+`Invex.FileSystem` fits well when:
+
+- You write **build scripts, code generators or developer tooling** that refer to the same handful of locations
+  (repository root, artifacts, output folders) from many places.
+- You need to **patch files for the duration of an operation**, such as stamping a version into a project file, and
+  must leave the repository clean afterwards even when the operation fails.
+- Your code already uses, or can move to, **`IFileSystem`** and dependency injection.
+
+It is probably not the right tool when:
+
+- You only need a mockable file system. Use `System.IO.Abstractions` directly; this library adds path resolution on
+  top of it, not a different I/O model.
+- You need a sandbox. A `RootedPath` is *bound* to a file system instance, not *confined* to a root directory, so it
+  does not stop code from composing paths outside a folder.
+- You need durable, crash-safe edits. Transform scopes keep the original content in memory and restore it on dispose;
+  if the process is killed before disposal, nothing restores the file.
+
+## Design principles
+
+- **Paths travel with their file system.** Every `RootedPath` carries the `IFileSystem` it belongs to, so the same code
+  runs against the real disk and a `MockFileSystem`.
+- **Resolution is separate from I/O.** `IRootedFileSystem` is a drop-in `IFileSystem`; where a location lives is decided
+  by providers registered once, not by the code that reads or writes files.
+- **Resolve once, in one place.** Keyed lookups are answered by the highest-priority provider that recognizes the key
+  and cached for the lifetime of the file system.
+- **Prefer `null` to exceptions for "not that kind of entry".** Members such as `FileName` and `DirectoryName` return
+  `null` when the path is not the expected entry type, so null-coalescing works naturally.
+- **Restores always complete.** Disposing a transform scope accepts no cancellation token, so a file is never left
+  half-restored.
+
 ## Next steps
 
-Head to [Getting Started](getting-started.md) to install the package and wire it into your dependency-injection
-container.
-
+- [Getting Started](getting-started.md): install the package and wire it into your dependency-injection container.
+- [Rooted Paths](rooted-paths.md): everything `RootedPath` can do.
+- [API Reference](../api/index.md): every public type.
