@@ -6,7 +6,7 @@
 dotnet add package Invex.FileSystem
 ```
 
-The package targets **.NET 8.0**, **.NET 9.0**, and **.NET 10.0**.
+The package targets **.NET 10.0**.
 
 ## Registering with dependency injection
 
