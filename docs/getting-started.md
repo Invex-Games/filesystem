@@ -1,5 +1,8 @@
 # Getting Started
 
+This page takes you from installing the package to resolving and composing your first paths. Start here if you
+are adding `Invex.FileSystem` to an application or build script for the first time.
+
 ## Installation
 
 ```shell
@@ -88,7 +91,8 @@ bool exists = csproj.FileExists;
 
 ## Next steps
 
-- [Rooted Paths](rooted-paths.md) — everything `RootedPath` can do.
-- [Path Providers](path-providers.md) — priorities, chaining, and custom providers.
-- [File Transform Scopes](transform-scopes.md) — temporary, reversible file edits.
-
+- [Rooted Paths](rooted-paths.md): everything `RootedPath` can do.
+- [Path Providers](path-providers.md): priorities, chaining, and custom providers.
+- [File Transform Scopes](transform-scopes.md): temporary, reversible file edits.
+- [Testing](testing.md): run the same code against a `MockFileSystem`.
+- <xref:Invex.FileSystem.FileSystemHostExtensions> and <xref:Invex.FileSystem.IRootedFileSystem> in the API reference.

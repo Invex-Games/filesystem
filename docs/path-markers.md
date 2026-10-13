@@ -55,3 +55,8 @@ services.ProvidePath((key, fs) => key == "PackageOutput"
     : null);
 ```
 
+## See also
+
+- [Path Providers](path-providers.md): keyed resolution through the provider chain.
+- [Rooted Paths](rooted-paths.md): composing the paths a marker returns.
+- <xref:Invex.FileSystem.IPathMarker> and <xref:Invex.FileSystem.IRootedFileSystem>

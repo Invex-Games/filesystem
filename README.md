@@ -1,49 +1,45 @@
-﻿# Invex.FileSystem
+# Invex.FileSystem
 
+[![Build](https://github.com/Invex-Games/filesystem/actions/workflows/Build.yml/badge.svg)](https://github.com/Invex-Games/filesystem/actions/workflows/Build.yml)
 [![NuGet](https://img.shields.io/nuget/v/Invex.FileSystem.svg)](https://www.nuget.org/packages/Invex.FileSystem)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Invex-Games/filesystem/blob/main/LICENSE.txt)
 [![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-512BD4.svg)](https://dotnet.microsoft.com/)
 
 A strongly-typed file system abstraction for .NET that layers **build-aware path resolution** and **reversible file
 transformations** on top of [`System.IO.Abstractions`](https://github.com/TestableIO/System.IO.Abstractions).
-
-Stop hard-coding paths and scattering magic strings across your build and tooling code. `Invex.FileSystem` lets you
-resolve well-known locations by key, compose paths fluently, and make temporary, automatically-rolled-back edits to
-files.
-
----
+Stop hard-coding paths and scattering magic strings across your build and tooling code: resolve well-known locations
+by key, compose paths fluently, and make temporary, automatically-rolled-back edits to files.
 
 ## Features
 
-### Rooted paths
-
-`RootedPath` carries its own `IFileSystem` so paths and I/O always travel together. Compose them
-fluently with the `/` operator.
-
-### Keyed path resolution
-
-resolve locations such as `"Root"` or `"Artifacts"` through a prioritized chain of
-`IPathProvider` implementations, with results cached after first lookup.
-
-### Strongly-typed path markers
-
-give compile-time names to well-known paths via `IPathMarker` instead of relying on
-magic strings.
-
-### Reversible file transforms
-
-`TransformFileScope` and `TransformMultiFileScope` apply temporary edits to one or
-many files and restore the originals on dispose (or commit them with `CancelRestore`).
-
-### Dependency-injection first
-
-a single `AddRootedFileSystem()` call wires everything up; register custom providers
-with `ProvidePath(...)`.
+- **Rooted paths.** `RootedPath` carries its own `IFileSystem`, so paths and I/O always travel together, and composes
+  fluently with the `/` operator.
+- **Keyed path resolution.** Resolve locations such as `"Root"` or `"Artifacts"` through a prioritized chain of
+  `IPathProvider` implementations, with results cached after the first lookup.
+- **Strongly-typed path markers.** Give compile-time names to well-known paths via `IPathMarker` instead of relying on
+  magic strings.
+- **Reversible file transforms.** `TransformFileScope` and `TransformMultiFileScope` apply temporary edits to one or
+  many files and restore the originals on dispose, or commit them with `CancelRestore()`.
+- **Dependency-injection first.** A single `AddRootedFileSystem()` call wires everything up; register custom providers
+  with `ProvidePath(...)`.
+- **Testable.** Everything works against `IFileSystem`, so a `MockFileSystem` drops straight into your tests.
 
 ## Installation
 
 ```shell
 dotnet add package Invex.FileSystem
+```
+
+The package targets **.NET 8.0**, **.NET 9.0** and **.NET 10.0**. It depends on `System.IO.Abstractions`,
+`Microsoft.Extensions.DependencyInjection.Abstractions` and `Microsoft.Extensions.Hosting.Abstractions`. The rooted file
+system logs path resolutions through `ILogger`, so register logging (for example `services.AddLogging()`) in your
+container. Generic-host apps already have both; a standalone console or build tool also needs the
+`Microsoft.Extensions.DependencyInjection` and `Microsoft.Extensions.Logging` packages for `BuildServiceProvider()` and
+`AddLogging()`:
+
+```shell
+dotnet add package Microsoft.Extensions.DependencyInjection
+dotnet add package Microsoft.Extensions.Logging
 ```
 
 ## Quick start
@@ -79,53 +75,40 @@ if (!logFile.PathExists)
     fs.Directory.CreateDirectory(artifacts);
 ```
 
-## Core concepts
+## Usage
 
-### `RootedPath`
+### Compose and query paths
 
-A `RootedPath` is a `record` that binds an absolute path string to the `IFileSystem` it belongs to. Because the file
-system travels with the path, existence checks and queries need no extra context:
+A `RootedPath` binds an absolute path string to the `IFileSystem` it belongs to, so existence checks and queries need
+no extra context. It implicitly converts to `string` for any API that expects one:
 
 ```csharp
 RootedPath path = fs.GetPath("Root") / "src" / "Project.csproj";
 
-bool exists          = path.PathExists;             // file or directory
-bool isFile          = path.FileExists;
-RootedPath? parent   = path.Parent;                 // null at the root
-string nameNoExt     = path.FileNameWithoutExtension;
+bool exists        = path.PathExists;   // file or directory
+RootedPath? parent = path.Parent;       // null at the root
 
-// Implicitly converts to string for APIs that expect one.
 File.ReadAllText(path);
 ```
 
-Use the `/` operator to combine segments and the implicit `string` conversion to pass a path to any standard API.
+See [Rooted Paths](https://github.com/Invex-Games/filesystem/blob/main/docs/rooted-paths.md).
 
-### Path providers
+### Resolve well-known locations by key
 
-Path resolution is decoupled from I/O. `IRootedFileSystem.GetPath(string)` queries every registered `IPathProvider` in *
-*descending priority order** and returns the first non-`null` result, caching it for subsequent calls.
-
-Register providers inline with `ProvidePath`:
+`IRootedFileSystem.GetPath(string)` queries every registered `IPathProvider` in descending priority order and caches
+the first non-`null` result. Use the `(key, fs)` overload of `ProvidePath` when a path depends on another resolved path:
 
 ```csharp
-// Simple key -> path mapping (priority defaults to 1).
-services.ProvidePath(key => key == "Temp"
-    ? new RootedPath(new FileSystem(), Path.GetTempPath())
-    : null);
-
-// Provider that depends on another resolved path.
 services.ProvidePath((key, fs) => key == "Output"
     ? fs.GetPath("Root") / "output"
     : null, priority: 5);
 ```
 
-For more complex resolution logic, implement `IPathProvider` directly and register it as a service. Higher `Priority`
-values win when multiple providers can resolve the same key; use a negative priority for a low-priority fallback.
+See [Path Providers](https://github.com/Invex-Games/filesystem/blob/main/docs/path-providers.md).
 
-### Path markers
+### Name paths with types
 
-When a path is statically determined by its type, implement `IPathMarker` to give it a strongly-typed name. Unlike keyed
-lookups, markers bypass the provider chain and cache:
+Implement `IPathMarker` when a path is statically determined by a type. Markers bypass the provider chain and cache:
 
 ```csharp
 public sealed class ArtifactsPath : IPathMarker
@@ -137,75 +120,71 @@ public sealed class ArtifactsPath : IPathMarker
 RootedPath artifacts = fs.GetPath<ArtifactsPath>();
 ```
 
-### Reversible file transforms
+See [Path Markers](https://github.com/Invex-Games/filesystem/blob/main/docs/path-markers.md).
 
-`TransformFileScope` captures a file's content, applies a transform, and restores the original when the scope is
-disposed — ideal for build steps that must temporarily patch a file (such as injecting a version number) without leaving
-permanent changes.
+### Patch files temporarily
+
+`TransformFileScope` captures a file's content, applies a transform and restores the original when the scope is
+disposed. `TransformMultiFileScope` does the same for a set of files:
 
 ```csharp
-RootedPath projectFile = fs.GetPath("Root") / "Directory.Build.props";
-
 await using (var scope = await TransformFileScope.CreateAsync(
-    projectFile,
+    fs.GetPath("Root") / "Directory.Build.props",
     content => content.Replace("1.0.0", "2.0.0")))
 {
-    // The file now contains "2.0.0" — run your build step here.
+    // The file now contains "2.0.0"; run your build step here.
 }
 // On dispose the original content is restored automatically.
 ```
 
-Chain additional edits fluently, and call `CancelRestore()` to keep the changes instead of rolling them back:
+See [File Transform Scopes](https://github.com/Invex-Games/filesystem/blob/main/docs/transform-scopes.md).
 
-```csharp
-await using var scope = await TransformFileScope
-    .CreateAsync(projectFile, _ => "version=1")
-    .AddAsync(content => content + "\nbuild=ci");
+### Test without touching the disk
 
-scope.CancelRestore(); // commit the transformation permanently
-```
-
-If a file does not exist when the scope is created, it is created during the scope and **deleted** on restore.
-
-Use `TransformMultiFileScope` to patch a set of files in parallel with the same all-or-nothing restore guarantee:
-
-```csharp
-RootedPath[] projects =
-[
-    fs.GetPath("Root") / "src" / "A" / "A.csproj",
-    fs.GetPath("Root") / "src" / "B" / "B.csproj",
-];
-
-await using var scope = await TransformMultiFileScope.CreateAsync(
-    projects,
-    content => content.Replace("<Version>1.0.0</Version>", "<Version>2.0.0</Version>"));
-```
-
-## Testing
-
-Because the library builds on `System.IO.Abstractions`, you can construct a `RootedPath` over a `MockFileSystem` and
-exercise your code without touching the real disk:
+Construct a `RootedPath` over a `MockFileSystem`, or override the keyed `"RootedFileSystem"` registration in your
+container:
 
 ```csharp
 var mock = new MockFileSystem();
 var path = new RootedPath(mock, "/repo/file.txt");
 
 mock.AddFile(path, new MockFileData("hello"));
-path.FileExists.ShouldBeTrue();
+// path.FileExists is now true
 ```
 
-## API reference
+See [Testing](https://github.com/Invex-Games/filesystem/blob/main/docs/testing.md).
 
-| Type                       | Description                                                                         |
-|----------------------------|-------------------------------------------------------------------------------------|
-| `IRootedFileSystem`        | File system abstraction with `GetPath`, `CurrentDirectory`, and `CreateRootedPath`. |
-| `RootedPath`               | A path bound to an `IFileSystem`, with composition and existence helpers.           |
-| `IPathProvider`            | Resolves a `RootedPath` for a key; queried by priority.                             |
-| `FunctionPathProvider`     | Delegate-based `IPathProvider` implementation.                                      |
-| `IPathMarker`              | Strongly-typed, statically-computed path.                                           |
-| `TransformFileScope`       | Temporary, reversible single-file transformation.                                   |
-| `TransformMultiFileScope`  | Temporary, reversible multi-file transformation.                                    |
-| `FileSystemHostExtensions` | DI registration: `AddRootedFileSystem` and `ProvidePath`.                           |
+## Documentation
+
+Full documentation: [https://invex-games.github.io/filesystem/](https://invex-games.github.io/filesystem/)
+
+| Guide                                                                                                | Contents                                                              |
+|------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| [Introduction](https://github.com/Invex-Games/filesystem/blob/main/docs/introduction.md)             | What the library solves, when to use it, and the pieces at a glance.  |
+| [Getting Started](https://github.com/Invex-Games/filesystem/blob/main/docs/getting-started.md)       | Installation, DI registration, and your first resolved paths.         |
+| [Rooted Paths](https://github.com/Invex-Games/filesystem/blob/main/docs/rooted-paths.md)             | Creating, composing and querying `RootedPath`.                        |
+| [Path Providers](https://github.com/Invex-Games/filesystem/blob/main/docs/path-providers.md)         | Priorities, caching, custom providers and error handling.             |
+| [Path Markers](https://github.com/Invex-Games/filesystem/blob/main/docs/path-markers.md)             | Strongly-typed paths with `IPathMarker`.                              |
+| [File Transform Scopes](https://github.com/Invex-Games/filesystem/blob/main/docs/transform-scopes.md) | Temporary, reversible single- and multi-file edits.                  |
+| [Testing](https://github.com/Invex-Games/filesystem/blob/main/docs/testing.md)                       | Using `MockFileSystem` with rooted paths and transform scopes.        |
+| [API Reference](https://github.com/Invex-Games/filesystem/blob/main/api/index.md)                    | Every public type, with links into the generated reference.           |
+
+## Development
+
+```shell
+dotnet build Invex.FileSystem.slnx
+dotnet test Invex.FileSystem.slnx
+```
+
+The documentation site is built with [DocFX](https://dotnet.github.io/docfx/) through the
+[Atom](https://github.com/Invex-Games/atom) build in `_atom/`:
+
+```shell
+atom BuildDocs   # generate the site
+atom ServeDocs   # build and serve it locally
+```
+
+Without the `atom` tool installed, run the same targets with `dotnet run --project _atom -- BuildDocs`.
 
 ## License
 

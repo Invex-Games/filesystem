@@ -93,3 +93,9 @@ Once `CancelRestore()` has been called it cannot be undone, and subsequent `Add`
 > Disposal intentionally accepts no cancellation token: restoring content always runs to completion so a file is never
 > left in a partially-written state.
 
+## See also
+
+- [Rooted Paths](rooted-paths.md): the paths scopes operate on.
+- [Testing](testing.md): verifying rollback against a `MockFileSystem`.
+- <xref:Invex.FileSystem.TransformFileScope>, <xref:Invex.FileSystem.TransformMultiFileScope> and
+  <xref:Invex.FileSystem.TransformFileScopeExtensions>
