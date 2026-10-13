@@ -4,7 +4,7 @@ Path resolution is decoupled from file I/O. `IRootedFileSystem.GetPath(string)` 
 `IPathProvider` in **descending priority order** and returns the first non-`null` result, caching it for subsequent
 calls.
 
-```
+```text
 GetPath("Artifacts")
    │
    ├─► Provider (priority 5)  → null        (doesn't recognise the key — skipped)
@@ -87,7 +87,7 @@ services.AddRootedFileSystem();
 
 If no provider recognizes a key, `GetPath` throws `InvalidOperationException`:
 
-```
+```text
 Could not locate path for key 'Artifcats'
 ```
 
@@ -95,3 +95,10 @@ Providers may call `GetPath` for *other* keys while resolving their own (as in t
 recursion-depth guard throws `InvalidOperationException` if resolution nests more than 100 levels deep, which almost
 always indicates a circular key dependency such as `"A" → "B" → "A"`.
 
+## See also
+
+- [Rooted Paths](rooted-paths.md): the values providers return.
+- [Path Markers](path-markers.md): strongly-typed paths that bypass the provider chain.
+- [Testing](testing.md): faking path resolution in tests.
+- <xref:Invex.FileSystem.IPathProvider>, <xref:Invex.FileSystem.FunctionPathProvider>,
+  <xref:Invex.FileSystem.FileSystemHostExtensions> and <xref:Invex.FileSystem.IRootedFileSystem>
