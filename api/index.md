@@ -20,10 +20,12 @@ to start.
 ## Typical flow
 
 ```csharp
+var services = new ServiceCollection();
 services.AddLogging();
 services.AddRootedFileSystem();
 services.ProvidePath((key, fs) => key == "Root" ? fs.CurrentDirectory : null);
 
+using var provider = services.BuildServiceProvider();
 var fs = provider.GetRequiredService<IRootedFileSystem>();
 RootedPath props = fs.GetPath("Root") / "Directory.Build.props";
 
