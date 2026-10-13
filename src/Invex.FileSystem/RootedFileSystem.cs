@@ -60,6 +60,9 @@ public interface IRootedFileSystem : IFileSystem
     /// <inheritdoc cref="IFileSystem.FileVersionInfo" />
     IFileVersionInfoFactory IFileSystem.FileVersionInfo => FileSystem.FileVersionInfo;
 
+    /// <inheritdoc cref="IFileSystem.RandomAccess" />
+    IRandomAccess IFileSystem.RandomAccess => FileSystem.RandomAccess;
+
     /// <summary>
     ///     Resolves a well-known path by key, querying the registered <see cref="IPathProvider" />
     ///     chain and caching the result for later calls.
