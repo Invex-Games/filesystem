@@ -34,7 +34,10 @@ public static class FileSystemHostExtensions
         ///             abstraction automatically gets the rooted file system implementation.
         ///         </item>
         ///     </list>
-        ///     Call <c>ProvidePath</c> after this method to register additional path providers.
+        ///     Register path providers with <c>ProvidePath</c> (or by adding <see cref="IPathProvider" />
+        ///     services directly) either before or after calling this method: providers are collected
+        ///     from the container when <see cref="IRootedFileSystem" /> is first resolved, so
+        ///     registration order relative to this call does not matter.
         /// </remarks>
         public IServiceCollection AddRootedFileSystem() =>
             serviceCollection

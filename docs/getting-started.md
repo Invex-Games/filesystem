@@ -35,7 +35,8 @@ services.AddRootedFileSystem();
 
 ## Declaring well-known paths
 
-After `AddRootedFileSystem()`, declare where your well-known locations live with `ProvidePath`:
+Declare where your well-known locations live with `ProvidePath` (before or after `AddRootedFileSystem()`; providers are
+collected when `IRootedFileSystem` is first resolved, so registration order does not matter):
 
 ```csharp
 services.ProvidePath((key, fs) => key switch
