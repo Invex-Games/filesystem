@@ -47,8 +47,10 @@ services.ProvidePath((key, fs) => key == "Output"
 ## Caching
 
 Results are cached per key after the first successful resolution. Repeated calls to `GetPath("Root")` return the same
-`RootedPath` instance without re-querying providers — so each provider's `GetPath` is called at most once per key per
-`IRootedFileSystem` lifetime.
+`RootedPath` instance without re-querying providers, so sequential calls query each provider at most once per key per
+`IRootedFileSystem` lifetime. Providers run outside the cache, though, so if several threads resolve the same uncached
+key at once, a provider's `GetPath` may be called more than once for that key. Only the first result is cached, and
+every caller gets that same instance, so keep providers free of side effects that must happen only once.
 
 ## Custom provider implementations
 

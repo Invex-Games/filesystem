@@ -8,8 +8,9 @@
 ///         Properties such as <see cref="FileName" /> and <see cref="DirectoryName" /> intentionally
 ///         return <c>null</c> when the path does not match the expected entry type (file vs. directory),
 ///         rather than throwing, so callers can use null-coalescing patterns naturally. The existence
-///         checks (<see cref="FileExists" />, <see cref="DirectoryExists" />, and <see cref="PathExists" />)
-///         return <see langword="false" /> in that case.
+///         checks never throw: <see cref="FileExists" /> is <see langword="true" /> only for an existing
+///         file, <see cref="DirectoryExists" /> only for an existing directory, and
+///         <see cref="PathExists" /> for either.
 ///     </para>
 /// </remarks>
 /// <param name="FileSystem">The file system instance this path belongs to.</param>
