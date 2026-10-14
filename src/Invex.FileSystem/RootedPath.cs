@@ -5,10 +5,12 @@
 /// </summary>
 /// <remarks>
 ///     <para>
-///         Properties such as <see cref="FileExists" />, <see cref="FileName" />, and
-///         <see cref="DirectoryName" /> intentionally return <c>null</c> when the path does not match
-///         the expected entry type (file vs. directory), rather than throwing, so callers can use
-///         null-coalescing patterns naturally.
+///         Properties such as <see cref="FileName" /> and <see cref="DirectoryName" /> intentionally
+///         return <c>null</c> when the path does not match the expected entry type (file vs. directory),
+///         rather than throwing, so callers can use null-coalescing patterns naturally. The existence
+///         checks never throw: <see cref="FileExists" /> is <see langword="true" /> only for an existing
+///         file, <see cref="DirectoryExists" /> only for an existing directory, and
+///         <see cref="PathExists" /> for either.
 ///     </para>
 /// </remarks>
 /// <param name="FileSystem">The file system instance this path belongs to.</param>

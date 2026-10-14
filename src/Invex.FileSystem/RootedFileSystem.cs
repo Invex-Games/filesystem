@@ -83,9 +83,10 @@ public interface IRootedFileSystem : IFileSystem
     ///         the same key, the one with the higher priority wins.
     ///     </para>
     ///     <para>
-    ///         Results are cached after the first successful resolution, so repeated calls with the
-    ///         same key always return the same <see cref="RootedPath" /> instance without re-querying
-    ///         providers.
+    ///         Results are cached after the first successful resolution, so later calls with the same
+    ///         key return the same <see cref="RootedPath" /> instance without re-querying providers.
+    ///         Providers are queried outside the cache, so concurrent first resolutions of the same key
+    ///         may each call the providers; only the first result is cached and returned to every caller.
     ///     </para>
     /// </remarks>
     RootedPath GetPath(string key);
@@ -135,12 +136,17 @@ public interface IRootedFileSystem : IFileSystem
 ///         dependencies: if resolution recurses more than 100 levels deep an
 ///         <see cref="InvalidOperationException" /> is thrown rather than overflowing the stack.
 ///     </para>
+///     <para>
+///         The path cache is thread-safe because the instance is registered as a singleton.  Concurrent
+///         first calls for the same key may each query the providers, but only the first result is
+///         cached and returned to every caller.
+///     </para>
 /// </remarks>
 /// <param name="logger">The logger for diagnostics.</param>
 internal sealed class RootedFileSystem(ILogger<RootedFileSystem> logger) : IRootedFileSystem
 {
     private readonly AsyncLocal<int> _getPathDepth = new();
-    private readonly Dictionary<string, RootedPath> _pathCache = [];
+    private readonly ConcurrentDictionary<string, RootedPath> _pathCache = new();
 
     /// <summary>
     ///     Gets the ordered list of <see cref="IPathProvider" /> instances used to resolve path
@@ -179,7 +185,10 @@ internal sealed class RootedFileSystem(ILogger<RootedFileSystem> logger) : IRoot
 
             logger.LogDebug("Path for key '{Key}' located: {Path}", key, path);
 
-            return _pathCache[key] = path;
+            // Providers run outside the cache so that they can call GetPath recursively.  If another
+            // thread resolved the same key in the meantime, its result wins so that every caller
+            // observes a single cached instance per key.
+            return _pathCache.GetOrAdd(key, path);
         }
         finally
         {
