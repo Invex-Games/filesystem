@@ -3,7 +3,7 @@
 [![Build](https://github.com/Invex-Games/filesystem/actions/workflows/Build.yml/badge.svg)](https://github.com/Invex-Games/filesystem/actions/workflows/Build.yml)
 [![NuGet](https://img.shields.io/nuget/v/Invex.FileSystem.svg)](https://www.nuget.org/packages/Invex.FileSystem)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Invex-Games/filesystem/blob/main/LICENSE.txt)
-[![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0-512BD4.svg)](https://dotnet.microsoft.com/)
+[![.NET](https://img.shields.io/badge/.NET-10.0-512BD4.svg)](https://dotnet.microsoft.com/)
 
 A strongly-typed file system abstraction for .NET that layers **build-aware path resolution** and **reversible file
 transformations** on top of [`System.IO.Abstractions`](https://github.com/TestableIO/System.IO.Abstractions).
