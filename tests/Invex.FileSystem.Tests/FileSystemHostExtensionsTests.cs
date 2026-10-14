@@ -92,6 +92,31 @@ internal sealed class FileSystemHostExtensionsTests
     }
 
     [Test]
+    public void ProvidePath_WhenRegisteredBeforeAddRootedFileSystem_IsResolvedViaGetPath()
+    {
+        // Arrange
+        const string key = "EarlyKey";
+        var expectedPath = $"{Root}early-path";
+
+        var services = new ServiceCollection();
+        services.AddLogging();
+
+        services.ProvidePath((queryKey, atomFs) => queryKey == key
+            ? new RootedPath(atomFs, expectedPath)
+            : null);
+
+        services.AddRootedFileSystem();
+
+        // Act
+        using var sp = services.BuildServiceProvider();
+        var atomFs = sp.GetRequiredService<IRootedFileSystem>();
+        var result = atomFs.GetPath(key);
+
+        // Assert
+        result.Path.ShouldBe(expectedPath);
+    }
+
+    [Test]
     public void ProvidePath_WhenMultipleProvidersRegistered_HigherPriorityWins()
     {
         // Arrange
