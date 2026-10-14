@@ -36,7 +36,8 @@ dotnet test Invex.FileSystem.slnx
 - **`IRootedFileSystem`** (`RootedFileSystem.cs`) — extends `IFileSystem` with keyed path
   resolution. All I/O members have default interface implementations that delegate to the
   `FileSystem` property. `GetPath(string)` queries the `IPathProvider` chain in descending
-  priority order, returns the first non-`null` result, and caches it per key. An `AsyncLocal`
+  priority order, returns the first non-`null` result, and caches it per key in a thread-safe
+  `ConcurrentDictionary` (the instance is a DI singleton). An `AsyncLocal`
   depth counter (limit 100) guards against circular key dependencies. The concrete
   `RootedFileSystem` class is `internal`; consumers only see the interface.
 - **`RootedPath`** (`RootedPath.cs`) — a record pairing an `IFileSystem` with an absolute path
