@@ -41,8 +41,8 @@ current `IRootedFileSystem` is passed in, the returned `RootedPath` stays consis
 the application (and with mock file systems in tests).
 
 > [!NOTE]
-> Markers use C#'s *static abstract interface members*, so they cannot be instantiated — the
-> marker type exists purely to carry the path computation.
+> Markers use C#'s *static abstract interface members*, so `GetPath<T>()` calls `T.Path(...)` without ever creating
+> an instance. The marker type exists purely to carry the path computation.
 
 ## Combining markers with providers
 
