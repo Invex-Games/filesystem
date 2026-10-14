@@ -83,9 +83,10 @@ public interface IRootedFileSystem : IFileSystem
     ///         the same key, the one with the higher priority wins.
     ///     </para>
     ///     <para>
-    ///         Results are cached after the first successful resolution, so repeated calls with the
-    ///         same key always return the same <see cref="RootedPath" /> instance without re-querying
-    ///         providers.
+    ///         Results are cached after the first successful resolution, so later calls with the same
+    ///         key return the same <see cref="RootedPath" /> instance without re-querying providers.
+    ///         Providers are queried outside the cache, so concurrent first resolutions of the same key
+    ///         may each call the providers; only the first result is cached and returned to every caller.
     ///     </para>
     /// </remarks>
     RootedPath GetPath(string key);

@@ -12,9 +12,11 @@
 ///         provider in the chain handle it.
 ///     </para>
 ///     <para>
-///         Because <see cref="IRootedFileSystem.GetPath" /> caches successful resolutions, a provider's
-///         <see cref="GetPath" /> method is called at most once per key per lifetime of the
-///         <see cref="IRootedFileSystem" /> instance.
+///         Because <see cref="IRootedFileSystem.GetPath" /> caches successful resolutions, sequential
+///         calls query a provider's <see cref="GetPath" /> method at most once per key per lifetime of the
+///         <see cref="IRootedFileSystem" /> instance.  Providers are queried outside the cache, so
+///         concurrent first resolutions of the same key may call <see cref="GetPath" /> more than once;
+///         every caller still receives the same cached <see cref="RootedPath" /> instance.
 ///     </para>
 /// </remarks>
 [PublicAPI]
