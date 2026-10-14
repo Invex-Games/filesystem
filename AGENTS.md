@@ -144,6 +144,23 @@ site deploys to GitHub Pages on stable releases.
    dispose idempotent; no cancellation during restore).
 3. Update the behaviour-reference table in `docs/transform-scopes.md`.
 
+## Documentation
+
+Docs follow the shared Invex documentation standard used by every Invex library:
+
+- **README.md** is also the NuGet readme. Keep the fixed section order (title, badges, pitch, Features,
+  Installation, Quick start, Usage, Documentation, Development, License) and use absolute links only
+  (`https://github.com/Invex-Games/filesystem/blob/main/...` or the docs site), so they work on nuget.org.
+- **DocFX site** (`docfx.json`, `toc.yml`, `index.md`, `docs/`, `api/index.md`), published to
+  https://invex-games.github.io/filesystem/. `docs/introduction.md` and `docs/getting-started.md` come first; every page
+  opens with one to three sentences on what it covers and ends with a "See also" or "Next steps" list. Link API
+  types with `<xref:Namespace.Type>`, not file paths.
+- **`api/index.md`** is the only hand-written file under `api/`; everything else there is generated. Put per-type
+  detail in XML docs, not in hand-written API pages.
+- **XML docs are enforced.** `CS1591` is not suppressed for shipped projects, so every public type and member needs
+  `<summary>`, plus `<param>`, `<typeparam>`, `<returns>` and `<exception>` where they apply, `<remarks>` for
+  non-obvious behaviour, and `<see cref>`/`<paramref>`/`<see langword>` for references.
+
 ## Defer to the docs
 
 For anything beyond the above, prefer these over duplicating detail:
