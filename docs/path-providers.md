@@ -2,7 +2,8 @@
 
 Path resolution is decoupled from file I/O. `IRootedFileSystem.GetPath(string)` queries every registered
 `IPathProvider` in **descending priority order** and returns the first non-`null` result, caching it for subsequent
-calls.
+calls. The cache is thread-safe: if several threads resolve the same key at once, every caller gets the same cached
+`RootedPath` instance.
 
 ```text
 GetPath("Artifacts")

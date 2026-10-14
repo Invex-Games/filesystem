@@ -130,6 +130,50 @@ internal sealed class RootedFileSystemTests
     }
 
     [Test]
+    public void GetPath_WhenCalledConcurrently_ReturnsOneCachedInstancePerKey()
+    {
+        // Arrange
+        // RootedFileSystem is registered as a singleton, so GetPath must tolerate concurrent callers
+        // populating the cache for many keys at once.
+        const int keyCount = 200;
+        const int callersPerKey = 8;
+        var mockFs = new MockFileSystem();
+
+        var provider = new FunctionPathProvider
+        {
+            Priority = 0,
+            Provider = key => new(mockFs, $"{Root}{key}"),
+        };
+
+        var atomFs = new RootedFileSystem(
+            Microsoft.Extensions.Logging.Abstractions.NullLogger<RootedFileSystem>.Instance)
+        {
+            PathProviders = [provider],
+            FileSystem = mockFs,
+        };
+
+        var keys = Enumerable
+            .Range(0, keyCount * callersPerKey)
+            .Select(i => $"key{i % keyCount}")
+            .ToArray();
+
+        var results = new RootedPath[keys.Length];
+
+        // Act
+        Parallel.For(0,
+            keys.Length,
+            new() { MaxDegreeOfParallelism = Math.Max(4, Environment.ProcessorCount) },
+            i => results[i] = atomFs.GetPath(keys[i]));
+
+        // Assert
+        for (var i = 0; i < keys.Length; i++)
+        {
+            results[i].Path.ShouldBe($"{Root}{keys[i]}");
+            results[i].ShouldBeSameAs(atomFs.GetPath(keys[i]));
+        }
+    }
+
+    [Test]
     public void GetPath_WhenNoProviderResolvesKey_ThrowsInvalidOperationException()
     {
         // Arrange
