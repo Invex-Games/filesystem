@@ -218,7 +218,7 @@ internal interface IBuild : IWorkflowBuildDefinition,
                     [
                         new(nameof(TestFramework))
                         {
-                            Values = TestFrameworkNames,
+                            Values = [..TestFrameworkNames],
                         },
                     ],
                     Options =
@@ -241,7 +241,7 @@ internal interface IBuild : IWorkflowBuildDefinition,
                         })),
                         BuildOptions.Inject.Github.PullRequestNumber,
                         BuildOptions.Target.RunIfWorkflowCondition(
-                            TextExpressions.GitHub.GitHubEventName.EqualToString("pull_request")),
+                            Tex.GitHub.EventName.Eq("pull_request")),
                     ],
                 },
                 new(nameof(WaitForCopilotReview))
@@ -276,7 +276,7 @@ internal interface IBuild : IWorkflowBuildDefinition,
                     [
                         new(nameof(TestFramework))
                         {
-                            Values = TestFrameworkNames,
+                            Values = [..TestFrameworkNames],
                         },
                     ],
                 },
@@ -293,11 +293,8 @@ internal interface IBuild : IWorkflowBuildDefinition,
                         {
                             Contents = PermissionsLevel.Write
                         })),
-                        BuildOptions.Target.RunIfWorkflowCondition(TextExpressions
-                            .Target
-                            .ParamOutput(this, nameof(SetupBuildInfo), nameof(BuildVersion))
-                            .Contains("-")
-                            .EqualTo(false))
+                        BuildOptions.Target.RunIfWorkflowCondition(
+                            !Tex.ParamOutput(this, nameof(SetupBuildInfo), nameof(BuildVersion)).Contains("-"))
                     ]
                 },
                 new(nameof(PublishDocs))
@@ -309,11 +306,8 @@ internal interface IBuild : IWorkflowBuildDefinition,
                         {
                             Contents = PermissionsLevel.Write,
                         })),
-                        BuildOptions.Target.RunIfWorkflowCondition(TextExpressions
-                            .Target
-                            .ParamOutput(this, nameof(SetupBuildInfo), nameof(BuildVersion))
-                            .Contains("-")
-                            .EqualTo(false)),
+                        BuildOptions.Target.RunIfWorkflowCondition(
+                            !Tex.ParamOutput(this, nameof(SetupBuildInfo), nameof(BuildVersion)).Contains("-")),
                     ],
                 },
             ],
@@ -331,7 +325,7 @@ internal interface IBuild : IWorkflowBuildDefinition,
                         BuildOptions.Inject.Github.PullRequestNumber,
                         BuildOptions.Inject.Github.DependabotEnableAutoMergePat,
                         BuildOptions.Target.RunIfWorkflowCondition(
-                            TextExpressions.GitHub.GitHubActor.EqualToString("dependabot[bot]")),
+                            Tex.GitHub.Actor.Eq("dependabot[bot]")),
                     ]
                 }
             ],
