@@ -9,15 +9,15 @@ focused and defer to the linked docs for detail.
 
 | Project                  | Role                                                                          | Target frameworks       |
 |--------------------------|-------------------------------------------------------------------------------|-------------------------|
-| `Invex.FileSystem`       | The library: `IRootedFileSystem`, `RootedPath`, path providers/markers, transform scopes | `net10.0` |
-| `Invex.FileSystem.Tests` | NUnit test suite, including a public API surface snapshot test                | `net10.0` |
+| `Invex.FileSystem`       | The library: `IRootedFileSystem`, `RootedPath`, path providers/markers, transform scopes | `net10.0`, `net11.0` |
+| `Invex.FileSystem.Tests` | NUnit test suite, including a public API surface snapshot test                | `net10.0`, `net11.0` |
 
 Sources live under `src/`, tests under `tests/`, the Atom build definition under `_atom/`, and the
 DocFX documentation site at the repo root (`docfx.json`, `index.md`, `docs/`, `api/`).
 
 ## Build & language specifics
 
-- **.NET 11 SDK** is required, plus the .NET 10 runtime (or SDK): the library and test projects target `net10.0`.
+- **.NET 11 SDK** is required, plus the .NET 10 runtime (or SDK): the library and test projects target `net10.0` and `net11.0`.
 - C# **LangVersion 15**, `ImplicitUsings` and `Nullable` enabled, `TreatWarningsAsErrors` on.
 - Global usings live in each project's `_usings.cs` — add shared usings there, not per-file.
 - `GenerateDocumentationFile` is on; all public members need XML doc comments.

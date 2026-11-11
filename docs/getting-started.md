@@ -9,7 +9,7 @@ are adding `Invex.FileSystem` to an application or build script for the first ti
 dotnet add package Invex.FileSystem
 ```
 
-The package targets **.NET 10.0**.
+The package targets **.NET 10.0** and **.NET 11.0**.
 
 ## Registering with dependency injection
 
