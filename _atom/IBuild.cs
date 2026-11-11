@@ -46,6 +46,7 @@ internal interface IBuild : IWorkflowBuildDefinition,
     static readonly string[] TestFrameworkNames =
     [
         WorkflowLabels.Dotnet.Framework.Net_10_0,
+        "net11.0",
     ];
 
     IEnumerable<RootedPath> ICheckPrForBreakingChanges.BreakingChangeFilesToCheck =>
